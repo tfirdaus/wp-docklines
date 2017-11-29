@@ -19,9 +19,9 @@ RUN curl -sS https://getcomposer.org/installer | php \
 
 # Install PHPUnit
 RUN curl -OL https://phar.phpunit.de/phpunit-5.7.phar \
-	&& chmod 755 phpunit.phar \
-	&& mv phpunit.phar /usr/local/bin/ \
-	&& ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
+	&& chmod 755 phpunit-5.7.phar \
+	&& mv phpunit-5.7.phar /usr/local/bin/ \
+	&& ln -s /usr/local/bin/phpunit-5.7.phar /usr/local/bin/phpunit \
 	&& phpunit --version
 
 # Install PHP Code sniffer.
