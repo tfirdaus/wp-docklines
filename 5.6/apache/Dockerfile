@@ -18,10 +18,11 @@ RUN curl -sS https://getcomposer.org/installer | php \
 	&& ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 
 # Install PHPUnit
-RUN curl -OL https://phar.phpunit.de/phpunit.phar \
+RUN curl -OL https://phar.phpunit.de/phpunit-5.7.phar \
 	&& chmod 755 phpunit.phar \
 	&& mv phpunit.phar /usr/local/bin/ \
 	&& ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
+	&& phpunit --version
 
 # Install PHP Code sniffer.
 RUN curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
