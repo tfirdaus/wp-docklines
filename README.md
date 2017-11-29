@@ -11,7 +11,7 @@ WP-Docklines is a custom Docker image for WordPress development. It can be used 
 - [Git](https://git-scm.com/)
 
 ## Usage
-If you'd like to use it on your computer, you'll need to install Docker (<a href="https://www.docker.com/docker-mac">Mac</a>|<a href="https://www.docker.com/docker-windows">Windows</a>). The image is available in [Docker Hub](https://hub.docker.com/) and can be pulled with the <code>docker pull</code> command. More examples on the usage will be coming soon.
+If you'd like to use it on your computer, you'll need to install Docker ([Mac](https://www.docker.com/docker-mac)|[Windows](https://www.docker.com/docker-windows)). The image is available in [Docker Hub](https://hub.docker.com/) and can be pulled with the `docker pull` command. More examples on the usage will be coming soon.
 
 ## PHP Libraries / Extensions
-Following the image origin at <a href="https://hub.docker.com/_/wordpress/">WordPress Official Docker image</a>, this image does not provide any additional PHP extensions or other libraries as well. There are an infinite number of possible plugins and including every PHP extension that exists would dramatically increase the image size.
+Following the image origin at [WordPress Official Docker image](https://hub.docker.com/_/wordpress/), this image does not provide any additional PHP extensions or other libraries as well. There are an infinite number of possible plugins and including every PHP extension that exists would dramatically increase the image size.
