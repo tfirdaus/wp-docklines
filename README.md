@@ -15,3 +15,10 @@ If you'd like to use it on your computer, you'll need to install Docker ([Mac](h
 
 ## PHP Libraries / Extensions
 Following the image origin at [WordPress Official Docker image](https://hub.docker.com/_/wordpress/), this image does not provide any additional PHP extensions or other libraries as well. There are an infinite number of possible plugins and including every PHP extension that exists would dramatically increase the image size.
+
+## TODO
+- [ ] Add XDebug
+- [ ] Add PHP-FPM Image variants and Alpine Image variants
+- [ ] Add PHP 5.3, 5.4, 7.2 Image variants
+- [ ] Add postfix or whatever to enable outgoing emails
+- [ ] Add Wikis
