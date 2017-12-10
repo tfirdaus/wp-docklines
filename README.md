@@ -18,7 +18,9 @@ Following the image origin at [WordPress Official Docker image](https://hub.dock
 
 ## TODO
 - [ ] Add XDebug
-- [ ] Add PHP-FPM Image variants and Alpine Image variants
-- [ ] Add PHP 5.3, 5.4, 7.2 Image variants
-- [ ] Add postfix or whatever to enable outgoing emails
+- [x] Add PHP-FPM Image variants
+- [ ] Add Alpine Image variants
+- [ ] Add PHP 5.3 and 5.4 Image variants
+- [x] Add PHP 7.2 Image variants
+- [ ] Add `postfix` or whatever to enable outgoing emails
 - [ ] Add Wikis

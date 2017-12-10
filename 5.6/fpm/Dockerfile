@@ -1,4 +1,4 @@
-FROM wordpress:php7.0-apache
+FROM wordpress:php5.6-fpm
 
 MAINTAINER Thoriq Firdaus <thoriqoe@gmail.com>
 
@@ -48,12 +48,8 @@ COPY wp-docklines-entrypoint.sh /usr/local/bin/
 # Misc.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/* \
 
-	## Suppress Could not reliably determine the server's fully qualified domain name, using 172.17.0.2.
-	&& echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf \
-	&& ln -s /etc/apache2/conf-available/servername.conf /etc/apache2/conf-enabled/servername.conf \
-
 	## Make the wp-docklines-entrypoint.sh executable.
 	&& chmod +x /usr/local/bin/wp-docklines-entrypoint.sh
 
 ENTRYPOINT ["wp-docklines-entrypoint.sh"]
-CMD ["apache2-foreground"]
+CMD ["php-fpm"]
