@@ -1,6 +1,7 @@
 # WP-Docklines (Beta)
 
-A custom Docker image for WordPress development. It can be used to perform CI/CD in services like Bitbucket Pipelines or for an environment to develop locally on your computer. This Docker image includes:
+A custom [Docker](https://www.docker.com/) image for WordPress development. It can be used to perform CI/CD in services like Bitbucket Pipelines or for setting up a local environment to develop WordPress plugins or themes locally in your computer. Each of these Docker images includes:
+
 - The latest version of [WordPress package](https://wordpress.org/download/).
 - [Composer](https://getcomposer.org/)
 - [WP-CLI](http://wp-cli.org/)
@@ -11,7 +12,9 @@ A custom Docker image for WordPress development. It can be used to perform CI/CD
 - [Git](https://git-scm.com/)
 
 ## Usage
-If you'd like to use it on your computer, you'll need to install Docker ([Mac](https://www.docker.com/docker-mac)|[Windows](https://www.docker.com/docker-windows)). The image is available in [Docker Hub](https://hub.docker.com/) and can be pulled with the `docker pull` command. More examples on the usage will be coming soon.
+If you'd like to use it on your computer, you'll need to install Docker ([Mac](https://www.docker.com/docker-mac)|[Windows](https://www.docker.com/docker-windows)). The image is available in [Docker Hub](https://hub.docker.com/). Run `docker pull tfirdaus/wp-docklines` command to pull the latest image which default to the `latest` tag or `php7.2-fpm`.
+
+More examples on the usage will be available soon in the [Wiki](https://github.com/tfirdaus/wp-docklines/wiki).
 
 ## PHP Libraries / Extensions
 Following the image origin at [WordPress Official Docker image](https://hub.docker.com/_/wordpress/), this image does not provide any additional PHP extensions or other libraries as well. There are an infinite number of possible plugins and including every PHP extension that exists would dramatically increase the image size.
