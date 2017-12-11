@@ -1,6 +1,6 @@
 # WP-Docklines (Beta)
 
-WP-Docklines is a custom Docker image for WordPress development. It can be used for peforming CI or for an environment to develop locally on your computer. This Docker image includes:
+A custom Docker image for WordPress development. It can be used to perform CI/CD in services like Bitbucket Pipelines or for an environment to develop locally on your computer. This Docker image includes:
 - The latest version of [WordPress package](https://wordpress.org/download/).
 - [Composer](https://getcomposer.org/)
 - [WP-CLI](http://wp-cli.org/)
@@ -15,3 +15,6 @@ If you'd like to use it on your computer, you'll need to install Docker ([Mac](h
 
 ## PHP Libraries / Extensions
 Following the image origin at [WordPress Official Docker image](https://hub.docker.com/_/wordpress/), this image does not provide any additional PHP extensions or other libraries as well. There are an infinite number of possible plugins and including every PHP extension that exists would dramatically increase the image size.
+
+## Why?
+Yes, there are a few Docker images for WordPress development. Yet I found most of these images are stacked with things that are not needed on most of my projects or are not suitable for the workflow. These images are built on top of those necessities; a Development environment with the similar _stacks_ to the Production environment of those websites that I'm working on. Eventually, it's become an opportunity to dig into Docker deeper.
