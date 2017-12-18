@@ -3,7 +3,7 @@ FROM wordpress:php7.0-apache
 MAINTAINER Thoriq Firdaus <thoriqoe@gmail.com>
 
 # Install extra packages
-RUN apt-get update && apt-get install -y subversion git unzip wget ssh gnupg --no-install-recommends
+RUN apt-get update && apt-get install -y subversion git unzip ssh gnupg mysql-client --no-install-recommends
 
 ## Install WP-CLI
 RUN curl -OL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
