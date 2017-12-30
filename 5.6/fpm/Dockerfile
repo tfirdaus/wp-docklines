@@ -11,12 +11,6 @@ RUN curl -OL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cl
     && mv wp-cli.phar /usr/local/bin/wp \
 	&& wp --version --allow-root
 
-## Install composer and put binary into $PATH
-RUN curl -sS https://getcomposer.org/installer | php \
-	&& mv composer.phar /usr/local/bin/ \
-	&& ln -s /usr/local/bin/composer.phar /usr/local/bin/composer \
-	&& composer --version
-
 ## INstall PHPUnit
 RUN curl -OL https://phar.phpunit.de/phpunit-5.7.phar \
 	&& chmod 755 phpunit-5.7.phar \
@@ -29,13 +23,12 @@ RUN	curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
 	&& chmod 755 phpcs.phar \
 	&& mv phpcs.phar /usr/local/bin/ \
 	&& ln -s /usr/local/bin/phpcs.phar /usr/local/bin/phpcs \
-	&& phpcs --version
-
-# Install PHPCBF
-RUN	curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar \
+	&& phpcs --version \
+    && curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar \
 	&& chmod 755 phpcbf.phar \
 	&& mv phpcbf.phar /usr/local/bin/ \
-	&& ln -s /usr/local/bin/phpcbf.phar /usr/local/bin/phpcbf
+	&& ln -s /usr/local/bin/phpcbf.phar /usr/local/bin/phpcbf \
+    && phpcbf --version
 
 ## Install WordPress Coding Standards
 RUN curl -OL https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/0.14.0.tar.gz \
@@ -51,12 +44,5 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
 	&& apt-get install -y nodejs \
 	&& nodejs --version
 
-# Add a wp-docklines-entrypoint.sh
-COPY wp-docklines-entrypoint.sh /usr/local/bin/
-
 # Misc.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/* \
-	&& chmod +x /usr/local/bin/wp-docklines-entrypoint.sh
-
-ENTRYPOINT ["wp-docklines-entrypoint.sh"]
-CMD ["php-fpm"]
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
