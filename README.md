@@ -1,4 +1,4 @@
-# WP-Docklines (Beta)
+# WP-Docklines
 
 [![Build Status](https://travis-ci.org/tfirdaus/wp-docklines.svg?branch=master)](https://travis-ci.org/tfirdaus/wp-docklines)
 
