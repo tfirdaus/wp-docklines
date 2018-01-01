@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/tfirdaus/wp-docklines.svg?branch=master)](https://travis-ci.org/tfirdaus/wp-docklines)
 
-A custom [Docker](https://www.docker.com/) image for WordPress development. It can be used to perform CI/CD in services like Bitbucket Pipelines or for setting up a local environment to develop WordPress plugins or themes locally in your computer. Each of these Docker images includes:
+A custom [Docker](https://www.docker.com/) image to perform CI (Continuous Integration) or CD (Continuous Delivery) in services like [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) or for setting up a local environment to develop WordPress plugins or themes locally in your computer. Each of these Docker images includes:
 
 - The latest version of [WordPress package](https://wordpress.org/download/).
 - [WP-CLI](http://wp-cli.org/)
