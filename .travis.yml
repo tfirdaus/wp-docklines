@@ -2,6 +2,10 @@ language: bash
 services: docker
 
 env:
+  - VARIANT=php5.4/apache
+  - VARIANT=php5.4/fpm
+  - VARIANT=php5.5/apache
+  - VARIANT=php5.5/fpm
   - VARIANT=php5.6/apache
   - VARIANT=php5.6/fpm
   - VARIANT=php7.0/apache
@@ -21,7 +25,6 @@ before_script:
 
 script:
   - travis_retry docker build -t "$image" .
-  - ~/official-images/test/run.sh "$image"
 
 after_script:
   - docker images
