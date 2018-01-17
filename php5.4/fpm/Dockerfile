@@ -18,7 +18,7 @@ RUN set -ex; \
 
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION 4.9.1
+ENV WORDPRESS_VERSION 4.9.2
 ENV WORDPRESS_SHA1 892d2c23b9d458ec3d44de59b753adb41012e903
 
 RUN set -ex; \
@@ -32,7 +32,6 @@ RUN set -ex; \
 ##<wp-docklines>##
 ENV PHPUNIT_VERSION 4.8
 ENV WPCS_VERSION 0.14.0
-ENV NODE_VERSION 8.9.3
 ENV NODE_VERSION 8.9.4
 
 # Install extra packages
