@@ -44,7 +44,7 @@ RUN set -ex; \
 ##<wp-docklines>##
 ENV PHPUNIT_VERSION 4.8
 ENV WPCS_VERSION 0.14.0
-ENV NODE_VERSION 8.9.3
+ENV NODE_VERSION 8.9.4
 
 # Install extra packages
 RUN apt-get update \

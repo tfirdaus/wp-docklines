@@ -4,7 +4,7 @@ MAINTAINER Thoriq Firdaus <thoriqoe@gmail.com>
 
 ENV PHPUNIT_VERSION 5.7
 ENV WPCS_VERSION 0.14.0
-ENV NODE_VERSION 8.9.3
+ENV NODE_VERSION 8.9.4
 
 # Install extra packages
 RUN apt-get update && apt-get install -y subversion git unzip mysql-client --no-install-recommends
