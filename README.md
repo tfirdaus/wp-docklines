@@ -2,6 +2,7 @@
 
 [![Travis](https://img.shields.io/travis/tfirdaus/wp-docklines.svg?style=for-the-badge)](https://travis-ci.org/tfirdaus/wp-docklines)
 [![Docker Pulls](https://img.shields.io/docker/pulls/tfirdaus/wp-docklines.svg?style=for-the-badge)](https://hub.docker.com/r/tfirdaus/wp-docklines/)
+[![license](https://img.shields.io/github/license/tfirdaus/wp-docklines.svg?style=for-the-badge)](https://github.com/tfirdaus/wp-docklines)
 
 A WordPress [Docker](https://www.docker.com/) image derivative for setting up a local environment to develop WordPress plugins or themes locally in your computer and to perform CI (Continuous Integration) or CD (Continuous Delivery) in services like [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines). Each of these Docker images includes:
 
