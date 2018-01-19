@@ -2,37 +2,46 @@ FROM wordpress:php7.2-fpm
 
 MAINTAINER Thoriq Firdaus <thoriqoe@gmail.com>
 
-ENV PHPUNIT_VERSION 5.7
+ENV PHPUNIT_VERSION 6.5.5
 ENV WPCS_VERSION 0.14.0
 ENV NODE_VERSION 8.9.4
 
 # Install extra packages
-RUN apt-get update && apt-get install -y subversion git unzip mysql-client --no-install-recommends
+RUN set -ex; \
+	apt-get update \
+	&& EXTRA_PACKAGES=" \
+		mysql-client \
+		ssh \
+		unzip \
+		subversion \
+		git \
+	" \
+	&& apt-get install -y $EXTRA_PACKAGES --no-install-recommends \
+	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
 
 ## Install WP-CLI
-RUN curl -OL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+RUN set -ex; \
+	curl -OL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x wp-cli.phar \
-    && mv wp-cli.phar /usr/local/bin/wp \
-	&& wp --version --allow-root
+    && mv wp-cli.phar /usr/local/bin/wp
 
 ## Install PHPUnit
-RUN curl -o phpunit.phar -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar" \
+RUN set -ex; \
+	curl -o phpunit.phar -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar" \
 	&& chmod 755 phpunit.phar \
 	&& mv phpunit.phar /usr/local/bin/ \
-	&& ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit \
-	&& phpunit --version
+	&& ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
 
 # Install PHP CodeSniffer && WordPress Coding Standards
-RUN	curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
+RUN set -ex; \
+	curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
 	&& chmod 755 phpcs.phar \
 	&& mv phpcs.phar /usr/local/bin/ \
 	&& ln -s /usr/local/bin/phpcs.phar /usr/local/bin/phpcs \
-	&& phpcs --version \
     && curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar \
 	&& chmod 755 phpcbf.phar \
 	&& mv phpcbf.phar /usr/local/bin/ \
 	&& ln -s /usr/local/bin/phpcbf.phar /usr/local/bin/phpcbf \
-    && phpcbf --version \
 	&& curl -o wpcs.tar.gz -fSL "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/${WPCS_VERSION}.tar.gz" \
 	&& mkdir -p /var/wpcs \
 	&& tar -xzf wpcs.tar.gz --directory /var/wpcs --strip-components 1 && rm wpcs.tar.gz \
@@ -78,7 +87,6 @@ RUN set -ex \
 	&& tar -xJf "node-v$NODE_VERSION-linux-$ARCH.tar.xz" -C /usr/local --strip-components=1 --no-same-owner \
 	&& rm "node-v$NODE_VERSION-linux-$ARCH.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
 	&& ln -s /usr/local/bin/node /usr/local/bin/nodejs \
-	&& nodejs --version && npm --version \
 	&& apt-get remove --purge -y $BUILD_PACKAGES \
 	&& apt-get autoremove -y \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*

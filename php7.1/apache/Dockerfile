@@ -2,14 +2,15 @@ FROM wordpress:php7.1-apache
 
 MAINTAINER Thoriq Firdaus <thoriqoe@gmail.com>
 
-ENV PHPUNIT_VERSION 5.7
+ENV PHPUNIT_VERSION 6.5.5
 ENV WPCS_VERSION 0.14.0
 ENV NODE_VERSION 8.9.4
 
 # Install extra packages
-RUN apt-get update \
+RUN set -ex; \
+	apt-get update \
 	&& EXTRA_PACKAGES=" \
-		mysql-client \ 
+		mysql-client \
 		ssh \
 		unzip \
 		subversion \
@@ -19,29 +20,28 @@ RUN apt-get update \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
 
 ## Install WP-CLI
-RUN curl -OL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+RUN set -ex; \
+	curl -OL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x wp-cli.phar \
-    && mv wp-cli.phar /usr/local/bin/wp \
-	&& wp --version --allow-root
+    && mv wp-cli.phar /usr/local/bin/wp
 
 ## Install PHPUnit
-RUN curl -o phpunit.phar -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar" \
+RUN set -ex; \
+	curl -o phpunit.phar -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar" \
 	&& chmod 755 phpunit.phar \
 	&& mv phpunit.phar /usr/local/bin/ \
-	&& ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit \
-	&& phpunit --version
+	&& ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
 
 # Install PHP CodeSniffer && WordPress Coding Standards
-RUN	curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
+RUN set -ex; \
+	curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
 	&& chmod 755 phpcs.phar \
 	&& mv phpcs.phar /usr/local/bin/ \
 	&& ln -s /usr/local/bin/phpcs.phar /usr/local/bin/phpcs \
-	&& phpcs --version \
     && curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar \
 	&& chmod 755 phpcbf.phar \
 	&& mv phpcbf.phar /usr/local/bin/ \
 	&& ln -s /usr/local/bin/phpcbf.phar /usr/local/bin/phpcbf \
-    && phpcbf --version \
 	&& curl -o wpcs.tar.gz -fSL "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/${WPCS_VERSION}.tar.gz" \
 	&& mkdir -p /var/wpcs \
 	&& tar -xzf wpcs.tar.gz --directory /var/wpcs --strip-components 1 && rm wpcs.tar.gz \
@@ -50,8 +50,8 @@ RUN	curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
 	&& phpcs --config-set installed_paths /var/wpcs
 
 # Install NodeJS && NPM
-RUN set -ex \
-	&& for key in \
+RUN set -ex; \
+	for key in \
 	    94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
 	    FD3A5288F042B6850C66B31F09FE44734EB7990E \
 	    71DCFD284A79C3B38668286BC97EC7A07EDE3FC1 \
@@ -81,10 +81,10 @@ RUN set -ex \
 	&& grep " node-v$NODE_VERSION-linux-$ARCH.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
 	&& tar -xJf "node-v$NODE_VERSION-linux-$ARCH.tar.xz" -C /usr/local --strip-components=1 --no-same-owner \
 	&& rm "node-v$NODE_VERSION-linux-$ARCH.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
-	&& ln -s /usr/local/bin/node /usr/local/bin/nodejs \
-	&& nodejs --version && npm --version
+	&& ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
 ##<apache>##
-RUN echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf \
+RUN set -ex; \
+	echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf \
 	&& ln -s /etc/apache2/conf-available/servername.conf /etc/apache2/conf-enabled/servername.conf
 ##</apache>##

@@ -1,4 +1,4 @@
-FROM wordpress:php7.0-fpm
+FROM wordpress:php7.0-fpm-alpine
 
 MAINTAINER Thoriq Firdaus <thoriqoe@gmail.com>
 
@@ -8,16 +8,7 @@ ENV NODE_VERSION 8.9.4
 
 # Install extra packages
 RUN set -ex; \
-	apt-get update \
-	&& EXTRA_PACKAGES=" \
-		mysql-client \
-		ssh \
-		unzip \
-		subversion \
-		git \
-	" \
-	&& apt-get install -y $EXTRA_PACKAGES --no-install-recommends \
-	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
+	apk add --update --no-cache mysql-client openssh-client unzip subversion git
 
 ## Install WP-CLI
 RUN set -ex; \
@@ -33,7 +24,7 @@ RUN set -ex; \
 	&& ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
 
 # Install PHP CodeSniffer && WordPress Coding Standards
-RUN set -ex; \
+RUN	set -ex; \
 	curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
 	&& chmod 755 phpcs.phar \
 	&& mv phpcs.phar /usr/local/bin/ \
@@ -51,34 +42,42 @@ RUN set -ex; \
 
 # Install NodeJS && NPM
 RUN set -ex; \
-	for key in \
-	    94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
-	    FD3A5288F042B6850C66B31F09FE44734EB7990E \
-	    71DCFD284A79C3B38668286BC97EC7A07EDE3FC1 \
-	    DD8F2338BAE7501E3DD5AC78C273792F7D83545D \
-	    C4F0DFFF4E8C1A8236409D08E73BC641CC11F4C8 \
-	    B9AE9905FFD7803F25714661B63B535A4C206CA9 \
-	    56730D5401028683275BD23C23EFEFE93C4CFFFE \
-	    77984A986EBC2AA786BC0F66B01FBB92821C587A \
-  	; do \
+	apk add --no-cache \
+        libstdc++ \
+    && apk add --no-cache --virtual .build-deps \
+        binutils-gold \
+        g++ \
+        gcc \
+        gnupg \
+        libgcc \
+        linux-headers \
+        make \
+        python \
+  # gpg keys listed at https://github.com/nodejs/node#release-team
+  && for key in \
+    94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
+    FD3A5288F042B6850C66B31F09FE44734EB7990E \
+    71DCFD284A79C3B38668286BC97EC7A07EDE3FC1 \
+    DD8F2338BAE7501E3DD5AC78C273792F7D83545D \
+    C4F0DFFF4E8C1A8236409D08E73BC641CC11F4C8 \
+    B9AE9905FFD7803F25714661B63B535A4C206CA9 \
+    56730D5401028683275BD23C23EFEFE93C4CFFFE \
+    77984A986EBC2AA786BC0F66B01FBB92821C587A \
+  ; do \
     gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
     gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" ; \
-  	done \
-	&& ARCH= && dpkgArch="$(dpkg --print-architecture)" \
-	&& case "${dpkgArch##*-}" in \
-		amd64) ARCH='x64';; \
-		ppc64el) ARCH='ppc64le';; \
-		s390x) ARCH='s390x';; \
-		arm64) ARCH='arm64';; \
-		armhf) ARCH='armv7l';; \
-		i386) ARCH='x86';; \
-	    *) echo "unsupported architecture"; exit 1 ;; \
-		esac \
-	&& curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.xz" \
-	&& curl -SLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
-	&& gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
-	&& grep " node-v$NODE_VERSION-linux-$ARCH.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
-	&& tar -xJf "node-v$NODE_VERSION-linux-$ARCH.tar.xz" -C /usr/local --strip-components=1 --no-same-owner \
-	&& rm "node-v$NODE_VERSION-linux-$ARCH.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
-	&& ln -s /usr/local/bin/node /usr/local/bin/nodejs
+  done \
+    && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz" \
+    && curl -SLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
+    && gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
+    && grep " node-v$NODE_VERSION.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
+    && tar -xf "node-v$NODE_VERSION.tar.xz" \
+    && cd "node-v$NODE_VERSION" \
+    && ./configure \
+    && make -j$(getconf _NPROCESSORS_ONLN) \
+    && make install \
+    && apk del .build-deps \
+    && cd .. \
+    && rm -Rf "node-v$NODE_VERSION" \
+    && rm "node-v$NODE_VERSION.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
