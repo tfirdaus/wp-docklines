@@ -29,12 +29,12 @@ See the following table for version of each package included :
 | `php7.0-apache`     | 1.4.1 | 6.5.5  | 3.2.2 | 0.14.0 | 8.9.4 | 5.6.0 | 1.8.10 | 2.1.4  |
 | `php7.0-fpm`        | 1.4.1 | 6.5.5  | 3.2.2 | 0.14.0 | 8.9.4 | 5.6.0 | 1.8.10 | 2.1.4  |
 | `php7.0-fpm-alpine` | 1.4.1 | 6.5.5  | 3.2.2 | 0.14.0 | 8.9.4 | 5.6.0 | 1.9.7  | 2.8.6  |
-| `php7.1-apache`     | 1.4.1 | 6.5.5  | 3.2.2 | 0.14.0 | 8.9.4 | 5.6.0 | 1.8.10 | 2.1.4  |
-| `php7.1-fpm`        | 1.4.1 | 6.5.5  | 3.2.2 | 0.14.0 | 8.9.4 | 5.6.0 | 1.8.10 | 2.1.4  |
-| `php7.1-fpm-alpine` | 1.4.1 | 6.5.5  | 3.2.2 | 0.14.0 | 8.9.4 | 5.6.0 | 1.9.7  | 2.8.6  |
-| `php7.2-apache`     | 1.4.1 | 6.5.5  | 3.2.2 | 0.14.0 | 8.9.4 | 5.6.0 | 1.9.5  | 2.11.0 |
-| `php7.2-fpm`        | 1.4.1 | 6.5.5  | 3.2.2 | 0.14.0 | 8.9.4 | 5.6.0 | 1.9.5  | 2.11.0 |
-| `php7.2-fpm-alpine` | 1.4.1 | 6.5.5  | 3.2.2 | 0.14.0 | 8.9.4 | 5.6.0 | 1.9.7  | 2.13.5 |
+| `php7.1-apache`     | 1.4.1 | 6.5.5  | 3.1.1 | 0.14.0 | 8.9.4 | 5.6.0 | 1.8.10 | 2.1.4  |
+| `php7.1-fpm`        | 1.4.1 | 6.5.5  | 3.1.1 | 0.14.0 | 8.9.4 | 5.6.0 | 1.8.10 | 2.1.4  |
+| `php7.1-fpm-alpine` | 1.4.1 | 6.5.5  | 3.1.1 | 0.14.0 | 8.9.4 | 5.6.0 | 1.9.7  | 2.8.6  |
+| `php7.2-apache`     | 1.4.1 | 6.5.5  | 3.1.1 | 0.14.0 | 8.9.4 | 5.6.0 | 1.9.5  | 2.11.0 |
+| `php7.2-fpm`        | 1.4.1 | 6.5.5  | 3.1.1 | 0.14.0 | 8.9.4 | 5.6.0 | 1.9.5  | 2.11.0 |
+| `php7.2-fpm-alpine` | 1.4.1 | 6.5.5  | 3.1.1 | 0.14.0 | 8.9.4 | 5.6.0 | 1.9.7  | 2.13.5 |
 
 ## Usage
 If you'd like to use it on your computer, you'll need to install Docker ([Mac](https://www.docker.com/docker-mac)|[Windows](https://www.docker.com/docker-windows)). The image is available in [Docker Hub](https://hub.docker.com/). Run `docker pull tfirdaus/wp-docklines` command to pull the latest image which default to the `latest` tag or `php7.2-apache`. Have a look at the [Wiki](https://github.com/tfirdaus/wp-docklines/wiki) for the a few usages:
