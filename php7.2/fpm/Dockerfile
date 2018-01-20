@@ -3,6 +3,7 @@ FROM wordpress:php7.2-fpm
 MAINTAINER Thoriq Firdaus <thoriqoe@gmail.com>
 
 ENV PHPUNIT_VERSION 6.5.5
+ENV PHPCS_VERSION 3.1.1
 ENV WPCS_VERSION 0.14.0
 ENV NODE_VERSION 8.9.4
 
@@ -34,11 +35,11 @@ RUN set -ex; \
 
 # Install PHP CodeSniffer && WordPress Coding Standards
 RUN set -ex; \
-	curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
+	curl -OL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCS_VERSION}/phpcs.phar" \
 	&& chmod 755 phpcs.phar \
 	&& mv phpcs.phar /usr/local/bin/ \
 	&& ln -s /usr/local/bin/phpcs.phar /usr/local/bin/phpcs \
-    && curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar \
+    && curl -OL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCS_VERSION}/phpcbf.phar" \
 	&& chmod 755 phpcbf.phar \
 	&& mv phpcbf.phar /usr/local/bin/ \
 	&& ln -s /usr/local/bin/phpcbf.phar /usr/local/bin/phpcbf \
