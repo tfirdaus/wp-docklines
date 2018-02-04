@@ -33,7 +33,7 @@ script:
 
 after_script:
   - docker images
-  - docker run "$image" /bin/sh -c "wp --version --allow-root; phpunit --version; phpcs --version; node -v; npm -v; svn --version; git --version"
+  - docker run "$image" /bin/sh -c "php --version; wp --version --allow-root; phpunit --version; phpcs --version; node -v; npm -v; svn --version; git --version"
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
