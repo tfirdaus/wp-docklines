@@ -35,10 +35,10 @@ See the following table for version of each package included :
 | `php7.2-fpm-alpine` | 1.5.0 | 7.0.0  | 3.1.1 | 0.14.0 | 8.9.4 | 5.6.0 | 1.9.7  | 2.13.5 |
 
 ## Usage
-If you'd like to use it on your computer, you'll need to install Docker ([Mac](https://www.docker.com/docker-mac)|[Windows](https://www.docker.com/docker-windows)). The image is available in [Docker Hub](https://hub.docker.com/). Run `docker pull tfirdaus/wp-docklines` command to pull the latest image which default to the `latest` tag or `php7.2-apache`. Have a look at the [Wiki](https://github.com/tfirdaus/wp-docklines/wiki) for the a few usages:
+If you'd like to use it on your computer, you'll need to install Docker ([Mac](https://www.docker.com/docker-mac)|[Windows](https://www.docker.com/docker-windows)). The image is available in [Docker Hub](https://hub.docker.com/). Run `docker pull tfirdaus/wp-docklines` command to pull the latest image which defaults to the `latest` tag or `php7.2-apache`. Have a look at the [Wiki](https://github.com/tfirdaus/wp-docklines/wiki) for a few usages:
 
 - [Docker Compose](https://github.com/tfirdaus/wp-docklines/wiki/Docker-Compose)
 - Bitbucket Pipelines (soon)
 
 ## PHP Libraries / Extensions
-Following the image origin at [WordPress Official Docker image](https://hub.docker.com/_/wordpress/), this image does not provide any additional PHP extensions or other libraries as well. There are an infinite number of possible plugins and including every PHP extension that exists would dramatically increase the image size.
+Following the image origin at [WordPress Official Docker image](https://hub.docker.com/_/wordpress/), this image does not provide any additional PHP extensions or other libraries as well. There is an infinite number of possible plugins and including every PHP extension that exists would dramatically increase the image size.
