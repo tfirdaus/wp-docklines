@@ -27,7 +27,7 @@ ENV WP_CLI_SHA512 9385c63ab835c7c450529035cdb1f524b5878a67c7565c3497628e5ec4ec07
 RUN set -ex; \
 	curl -o /usr/local/bin/wp.gpg -fSL "https://github.com/wp-cli/wp-cli/releases/download/v${WP_CLI_VERSION}/wp-cli-${WP_CLI_VERSION}.phar.gpg" \
 	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$WP_CLI_GPG_KEY" \
+	&& gpg --keyserver pgp.mit.edu --recv-keys "$WP_CLI_GPG_KEY" \
 	&& gpg --batch --decrypt --output /usr/local/bin/wp /usr/local/bin/wp.gpg \
 	&& rm -rf "$GNUPGHOME" /usr/local/bin/wp.gpg \
 	&& echo "$WP_CLI_SHA512 */usr/local/bin/wp" | sha512sum -c - \
@@ -44,15 +44,15 @@ RUN set -ex; \
 #                 aka "Sebastian Bergmann <sebastian.bergmann@thephp.cc>"
 #                 aka "[jpeg image of size 40635]"
 # Primary key fingerprint: D840 6D0D 8294 7747 2937  7831 4AA3 9408 6372 C20A
-ENV PHPUNIT_VERSION 7.0.0
+ENV PHPUNIT_VERSION 6.5.6
 ENV PHPUNIT_GPG_KEY D8406D0D82947747293778314AA394086372C20A
-ENV PHPUNIT_SHA256 ccdf420f69adc4f11dd46bd43f70a422bd8111ad9a81d907bab4a0d66314cc48
+ENV PHPUNIT_SHA256 ad0d5f8dfbd95ffcbfbe7fde4fa7a9d4f24fa6e070b1215faea579cdefac08f3
 
 RUN set -ex; \
 	curl -o /usr/local/bin/phpunit.phar -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar" \
 	&& curl -o /usr/local/bin/phpunit.phar.asc -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar.asc" \
 	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPUNIT_GPG_KEY" \
+	&& gpg --keyserver pgp.uni-mainz.de --recv-keys "$PHPUNIT_GPG_KEY" \
 	&& gpg --batch --verify /usr/local/bin/phpunit.phar.asc /usr/local/bin/phpunit.phar \
 	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpunit.phar.asc \
 	&& echo "$PHPUNIT_SHA256 */usr/local/bin/phpunit.phar" | sha256sum -c - \
@@ -61,18 +61,37 @@ RUN set -ex; \
 	&& phpunit --version
 
 # Install PHP CodeSniffer && WordPress Coding Standards
-# TODO: Update PHPCS and PHPCBF to 3.2.2 once the WordPress source stream image
-# has been updated to PHP 7.1.14 and 7.2.2 which possibly is shipped with the fix
-# for issue #6
-ENV PHPCS_VERSION 3.1.1
+# SHA256 source: https://squizlabs.github.io/PHP_CodeSniffer/phars/phive.xml
+# Signature made Tue Dec 19 21:59:03 2017 UTC using RSA key ID E2138192
+# Good signature from "Greg Sherwood <gsherwood@squiz.net>"
+# Primary key fingerprint: A972 B9AB B95D 0B76 0B51  4422 31C7 E470 E213 8192
+ENV PHPCS_VERSION 3.2.2
+ENV PHPCS_GPG_KEY A972B9ABB95D0B760B51442231C7E470E2138192
+ENV PHPCS_SHA256 c934737207f3baf2d36187a43ed4bd005a70eae65f16cf22ca4eed32a69aca2a
+
 ENV PHPCBF_VERSION $PHPCS_VERSION
-ENV WPCS_VERSION 0.14.0
+ENV PHPCBF_GPG_KEY $PHPCS_GPG_KEY
+ENV PHPCBF_SHA256 7ad5e782411f4b8944a0bfab7d70b782c3133c921fd237b8227567186ef71f52
+
+ENV WPCS_VERSION 0.14.1
 
 RUN set -ex; \
 	curl -o /usr/local/bin/phpcs.phar -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCS_VERSION}/phpcs.phar" \
+	&& curl -o /usr/local/bin/phpcs.phar.asc -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCS_VERSION}/phpcs.phar.asc" \
+	&& export GNUPGHOME="$(mktemp -d)" \
+	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPCS_GPG_KEY" \
+	&& gpg --batch --verify /usr/local/bin/phpcs.phar.asc /usr/local/bin/phpcs.phar \
+	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpcs.phar.asc \
+	&& echo "$PHPCS_SHA256 */usr/local/bin/phpcs.phar" | sha256sum -c - \
 	&& chmod +x /usr/local/bin/phpcs.phar \
 	&& mv /usr/local/bin/phpcs.phar /usr/local/bin/phpcs \
     && curl -o /usr/local/bin/phpcbf.phar -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCBF_VERSION}/phpcbf.phar" \
+	&& curl -o /usr/local/bin/phpcbf.phar.asc -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCBF_VERSION}/phpcbf.phar.asc" \
+	&& export GNUPGHOME="$(mktemp -d)" \
+	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPCBF_GPG_KEY" \
+	&& gpg --batch --verify /usr/local/bin/phpcbf.phar.asc /usr/local/bin/phpcbf.phar \
+	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpcbf.phar.asc \
+	&& echo "$PHPCBF_SHA256 */usr/local/bin/phpcbf.phar" | sha256sum -c - \
 	&& chmod +x /usr/local/bin/phpcbf.phar \
 	&& mv /usr/local/bin/phpcbf.phar /usr/local/bin/phpcbf \
 	&& phpcs --version \
