@@ -37,6 +37,7 @@ RUN set -ex; \
 	&& rm -rf "$GNUPGHOME" /usr/local/bin/wp.gpg \
 	&& echo "$WP_CLI_SHA512 */usr/local/bin/wp" | sha512sum -c - \
 	&& chmod +x /usr/local/bin/wp \
+	&& mkdir -p /var/www/.wp-cli && chown www-data:www-data -R /var/www/.wp-cli \
 	&& apt-get purge -y --auto-remove $BUILD_PACKAGES \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/* \
 	&& wp cli info
