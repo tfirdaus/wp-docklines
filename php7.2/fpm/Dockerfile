@@ -52,9 +52,9 @@ RUN set -ex; \
 #                 aka "Sebastian Bergmann <sebastian.bergmann@thephp.cc>"
 #                 aka "[jpeg image of size 40635]"
 # Primary key fingerprint: D840 6D0D 8294 7747 2937  7831 4AA3 9408 6372 C20A
-ENV PHPUNIT_VERSION 6.5.6
+ENV PHPUNIT_VERSION 6.5.7
 ENV PHPUNIT_GPG_KEY D8406D0D82947747293778314AA394086372C20A
-ENV PHPUNIT_SHA256 ad0d5f8dfbd95ffcbfbe7fde4fa7a9d4f24fa6e070b1215faea579cdefac08f3
+ENV PHPUNIT_SHA256 4652b6052806e672f2f5670e1b46dec34ad9f5c144613f5ea222c8e3e7e9400a
 
 RUN set -ex; \
 	BUILD_PACKAGES=" \
