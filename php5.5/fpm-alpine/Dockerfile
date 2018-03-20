@@ -100,7 +100,7 @@ RUN set -ex; \
 	&& curl -o /usr/local/bin/phpunit.phar -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar" \
 	&& curl -o /usr/local/bin/phpunit.phar.asc -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar.asc" \
 	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver pgp.uni-mainz.de --recv-keys "$PHPUNIT_GPG_KEY" \
+	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPUNIT_GPG_KEY" \
 	&& gpg --batch --verify /usr/local/bin/phpunit.phar.asc /usr/local/bin/phpunit.phar \
 	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpunit.phar.asc \
 	&& echo "$PHPUNIT_SHA256 */usr/local/bin/phpunit.phar" | sha256sum -c - \
