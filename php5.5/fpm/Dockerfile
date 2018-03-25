@@ -1,6 +1,6 @@
 FROM php:5.5-fpm
 
-MAINTAINER Thoriq Firdaus <thoriqoe@gmail.com>
+LABEL Thoriq Firdaus <thoriqoe@gmail.com>
 
 # install the PHP extensions we need
 RUN set -ex; \

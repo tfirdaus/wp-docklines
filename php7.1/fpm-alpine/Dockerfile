@@ -1,6 +1,6 @@
 FROM wordpress:php7.1-fpm-alpine
 
-MAINTAINER Thoriq Firdaus <thoriqoe@gmail.com>
+LABEL Thoriq Firdaus <thoriqoe@gmail.com>
 
 # Install extra packages
 RUN set -ex; \

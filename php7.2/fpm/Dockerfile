@@ -1,6 +1,6 @@
 FROM wordpress:php7.2-fpm
 
-MAINTAINER Thoriq Firdaus <thoriqoe@gmail.com>
+LABEL Thoriq Firdaus <thoriqoe@gmail.com>
 
 # Install extra packages
 RUN set -ex; \
