@@ -1,5 +1,8 @@
 language: bash
 services: docker
+branches:
+  only:
+  - develop
 
 env:
   - VARIANT=php5.4/apache
