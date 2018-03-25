@@ -22,14 +22,12 @@ env:
   - VARIANT=php7.2/apache
   - VARIANT=php7.2/fpm
   - VARIANT=php7.2/fpm-alpine
-  - VARIANT=latest
 
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images
 
 before_script:
   - env | sort
-  - if [ "$VARIANT" == "latest" ]; then cd php7.2/apache; else cd "$VARIANT"; fi
   - slash='/'; tag="${VARIANT//$slash/-}"; image="tfirdaus/wp-docklines:$tag"
 
 script:
