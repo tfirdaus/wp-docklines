@@ -28,6 +28,7 @@ install:
 
 before_script:
   - env | sort
+  - cd "$VARIANT"
   - slash='/'; tag="${VARIANT//$slash/-}"; image="tfirdaus/wp-docklines:$tag"
 
 script:
