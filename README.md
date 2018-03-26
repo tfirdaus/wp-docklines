@@ -12,7 +12,7 @@ A WordPress [Docker](https://www.docker.com/) image derivative for setting up a 
 - [Subversion](https://subversion.apache.org/)
 - [Git](https://git-scm.com/)
 
-See the following table for version of each package included :
+See the following table for version of each package included:
 
 | Image | WP-CLI | PHPUnit | PHPCS | WPCS | Node.js | NPM | SVN | Git |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -34,13 +34,17 @@ See the following table for version of each package included :
 | `php7.2-fpm`        | 1.5.0 | 6.5.7  | 3.2.3 | 0.14.1 | 8.10.0 | 5.6.0 | 1.9.5  | 2.11.0 |
 | `php7.2-fpm-alpine` | 1.5.0 | 6.5.7  | 3.2.3 | 0.14.1 | 8.10.0 | 5.6.0 | 1.9.7  | 2.13.5 |
 
+## PHP Libraries / Extensions
+
+The image also includes the following packages that might be needed for deployment or running a few select WP-CLI commands that require interaction with the `mysql` command such as `wp db import` and `wp db export`:
+
+- `mysql-client`
+- `unzip`
+- `ssh`
+
 ## Usage
 
 If you'd like to use it on your computer, you'll need to install Docker ([Mac](https://www.docker.com/docker-mac)|[Windows](https://www.docker.com/docker-windows)). The image is available in [Docker Hub](https://hub.docker.com/). Run `docker pull tfirdaus/wp-docklines` command to pull the latest image which defaults to the `latest` tag or `php7.2-apache`. Have a look at the [Wiki](https://github.com/tfirdaus/wp-docklines/wiki) for a few usages:
 
 - [Docker Compose](https://github.com/tfirdaus/wp-docklines/wiki/Docker-Compose)
 - [Bitbucket Pipelines](https://github.com/tfirdaus/wp-docklines/wiki/Bitbucket-Pipelines)
-
-## PHP Libraries / Extensions
-
-Following the image origin at [WordPress Official Docker image](https://hub.docker.com/_/wordpress/), this image does not provide any additional PHP extensions or other libraries as well. There is an infinite number of possible plugins and including every PHP extension that exists would dramatically increase the image size.
