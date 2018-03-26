@@ -1,4 +1,4 @@
-# WP-Docklines
+# WP Docklines
 
 [![Travis](https://img.shields.io/travis/tfirdaus/wp-docklines.svg?style=flat-square)](https://travis-ci.org/tfirdaus/wp-docklines) [![Docker Build Status](https://img.shields.io/docker/build/tfirdaus/wp-docklines.svg?style=flat-square)](https://hub.docker.com/r/tfirdaus/wp-docklines/) [![Docker Automated build](https://img.shields.io/docker/automated/tfirdaus/wp-docklines.svg?style=flat-square)](https://hub.docker.com/r/tfirdaus/wp-docklines/) [![Docker Pulls](https://img.shields.io/docker/pulls/tfirdaus/wp-docklines.svg?style=flat-square)](https://hub.docker.com/r/tfirdaus/wp-docklines/) [![License](https://img.shields.io/github/license/tfirdaus/wp-docklines.svg?style=flat-square)](https://github.com/tfirdaus/wp-docklines)
 
