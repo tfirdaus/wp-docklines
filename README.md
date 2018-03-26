@@ -39,7 +39,7 @@ See the following table for version of each package included :
 If you'd like to use it on your computer, you'll need to install Docker ([Mac](https://www.docker.com/docker-mac)|[Windows](https://www.docker.com/docker-windows)). The image is available in [Docker Hub](https://hub.docker.com/). Run `docker pull tfirdaus/wp-docklines` command to pull the latest image which defaults to the `latest` tag or `php7.2-apache`. Have a look at the [Wiki](https://github.com/tfirdaus/wp-docklines/wiki) for a few usages:
 
 - [Docker Compose](https://github.com/tfirdaus/wp-docklines/wiki/Docker-Compose)
-- Bitbucket Pipelines (soon)
+- [Bitbucket Pipelines](https://github.com/tfirdaus/wp-docklines/wiki/Bitbucket-Pipelines)
 
 ## PHP Libraries / Extensions
 
