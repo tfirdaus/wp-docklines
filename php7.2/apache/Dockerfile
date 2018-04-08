@@ -31,9 +31,13 @@ RUN set -ex; \
 	" \
 	&& apt-get update && apt-get install -y $BUILD_PACKAGES --no-install-recommends \
 	&& curl -o /usr/local/bin/wp.gpg -fSL "https://github.com/wp-cli/wp-cli/releases/download/v${WP_CLI_VERSION}/wp-cli-${WP_CLI_VERSION}.phar.gpg" \
-	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver pgp.mit.edu --recv-keys "$WP_CLI_GPG_KEY" \
-	&& gpg --batch --decrypt --output /usr/local/bin/wp /usr/local/bin/wp.gpg \
+	&& export GNUPGHOME="$(mktemp -d)" ; \
+	\
+	gpg --keyserver pgp.mit.edu --recv-keys "$WP_CLI_GPG_KEY" || \
+    gpg --keyserver keyserver.pgp.com --recv-keys "$WP_CLI_GPG_KEY" || \
+    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$WP_CLI_GPG_KEY" ; \
+	gpg --batch --decrypt --output /usr/local/bin/wp /usr/local/bin/wp.gpg \
+	\
 	&& rm -rf "$GNUPGHOME" /usr/local/bin/wp.gpg \
 	&& echo "$WP_CLI_SHA512 */usr/local/bin/wp" | sha512sum -c - \
 	&& chmod +x /usr/local/bin/wp \
@@ -70,8 +74,8 @@ RUN set -ex; \
 	gpg --keyserver pgp.mit.edu --recv-keys "$PHPUNIT_GPG_KEY" || \
     gpg --keyserver keyserver.pgp.com --recv-keys "$PHPUNIT_GPG_KEY" || \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPUNIT_GPG_KEY" ; \
+	gpg --batch --verify /usr/local/bin/phpunit.phar.asc /usr/local/bin/phpunit.phar \
 	\
-	&& gpg --batch --verify /usr/local/bin/phpunit.phar.asc /usr/local/bin/phpunit.phar \
 	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpunit.phar.asc \
 	&& echo "$PHPUNIT_SHA256 */usr/local/bin/phpunit.phar" | sha256sum -c - \
 	&& chmod +x /usr/local/bin/phpunit.phar \
@@ -108,8 +112,8 @@ RUN set -ex; \
 	gpg --keyserver pgp.mit.edu --recv-keys "$PHPCS_GPG_KEY" || \
     gpg --keyserver keyserver.pgp.com --recv-keys "$PHPCS_GPG_KEY" || \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPCS_GPG_KEY" ; \
+	gpg --batch --verify /usr/local/bin/phpcs.phar.asc /usr/local/bin/phpcs.phar \
 	\
-	&& gpg --batch --verify /usr/local/bin/phpcs.phar.asc /usr/local/bin/phpcs.phar \
 	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpcs.phar.asc \
 	&& echo "$PHPCS_SHA256 */usr/local/bin/phpcs.phar" | sha256sum -c - \
 	&& chmod +x /usr/local/bin/phpcs.phar \
@@ -121,8 +125,8 @@ RUN set -ex; \
 	gpg --keyserver pgp.mit.edu --recv-keys "$PHPCBF_GPG_KEY" || \
     gpg --keyserver keyserver.pgp.com --recv-keys "$PHPCBF_GPG_KEY" || \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPCBF_GPG_KEY" ; \
+	gpg --batch --verify /usr/local/bin/phpcbf.phar.asc /usr/local/bin/phpcbf.phar \
 	\
-	&& gpg --batch --verify /usr/local/bin/phpcbf.phar.asc /usr/local/bin/phpcbf.phar \
 	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpcbf.phar.asc \
 	&& echo "$PHPCBF_SHA256 */usr/local/bin/phpcbf.phar" | sha256sum -c - \
 	&& chmod +x /usr/local/bin/phpcbf.phar \
