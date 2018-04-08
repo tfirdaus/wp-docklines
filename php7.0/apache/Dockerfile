@@ -62,8 +62,8 @@ RUN set -ex; \
 	gpg --keyserver pgp.mit.edu --recv-keys "$PHPUNIT_GPG_KEY" || \
     gpg --keyserver keyserver.pgp.com --recv-keys "$PHPUNIT_GPG_KEY" || \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPUNIT_GPG_KEY" ; \
+	gpg --batch --verify /usr/local/bin/phpunit.phar.asc /usr/local/bin/phpunit.phar \
 	\
-	&& gpg --batch --verify /usr/local/bin/phpunit.phar.asc /usr/local/bin/phpunit.phar \
 	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpunit.phar.asc \
 	&& echo "$PHPUNIT_SHA256 */usr/local/bin/phpunit.phar" | sha256sum -c - \
 	&& chmod +x /usr/local/bin/phpunit.phar \
