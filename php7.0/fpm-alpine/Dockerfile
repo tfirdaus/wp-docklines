@@ -123,7 +123,7 @@ RUN set -ex; \
 
 # Install NodeJS && NPM
 # Node GPG Keys https://github.com/nodejs/node#release-team
-ENV NODE_VERSION 8.10.0
+ENV NODE_VERSION 8.11.1
 
 RUN set -ex; \
 	apk add --no-cache \

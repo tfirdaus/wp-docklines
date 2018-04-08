@@ -137,7 +137,7 @@ RUN set -ex; \
 	&& phpcs --config-set installed_paths /var/wpcs
 
 # Install NodeJS && NPM
-ENV NODE_VERSION 8.10.0
+ENV NODE_VERSION 8.11.1
 
 RUN set -ex; \
 	BUILD_PACKAGES=" \
