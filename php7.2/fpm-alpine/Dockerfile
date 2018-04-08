@@ -98,7 +98,7 @@ RUN set -ex; \
 	&& curl -o /usr/local/bin/phpcbf.phar.asc -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCBF_VERSION}/phpcbf.phar.asc" \
 	&& export GNUPGHOME="$(mktemp -d)" ; \
 	\
-	&& gpg --keyserver pgp.mit.edu --recv-keys "$PHPCBF_GPG_KEY" || \
+	gpg --keyserver pgp.mit.edu --recv-keys "$PHPCBF_GPG_KEY" || \
     gpg --keyserver keyserver.pgp.com --recv-keys "$PHPCBF_GPG_KEY" || \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPCBF_GPG_KEY" ; \
 	\

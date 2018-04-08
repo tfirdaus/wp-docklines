@@ -83,8 +83,13 @@ ENV PHPUNIT_SHA256 ab8bc3017a64cf75a2112f5e089a1d5b0c4cc2116556d60c1af5e3f584e85
 RUN set -ex; \
 	curl -o /usr/local/bin/phpunit.phar -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar" \
 	&& curl -o /usr/local/bin/phpunit.phar.asc -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar.asc" \
-	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPUNIT_GPG_KEY" \
+	&& export GNUPGHOME="$(mktemp -d)" ; \
+	\
+	gpg --keyserver pgp.uni-mainz.de --recv-keys "$PHPUNIT_GPG_KEY" || \
+	gpg --keyserver pgp.mit.edu --recv-keys "$PHPUNIT_GPG_KEY" || \
+    gpg --keyserver keyserver.pgp.com --recv-keys "$PHPUNIT_GPG_KEY" || \
+    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPUNIT_GPG_KEY" ; \
+	\
 	&& gpg --batch --verify /usr/local/bin/phpunit.phar.asc /usr/local/bin/phpunit.phar \
 	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpunit.phar.asc \
 	&& echo "$PHPUNIT_SHA256 */usr/local/bin/phpunit.phar" | sha256sum -c - \
@@ -110,8 +115,12 @@ ENV WPCS_VERSION 0.14.1
 RUN set -ex; \
 	curl -o /usr/local/bin/phpcs.phar -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCS_VERSION}/phpcs.phar" \
 	&& curl -o /usr/local/bin/phpcs.phar.asc -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCS_VERSION}/phpcs.phar.asc" \
-	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPCS_GPG_KEY" \
+	&& export GNUPGHOME="$(mktemp -d)" ; \
+	\
+	gpg --keyserver pgp.mit.edu --recv-keys "$PHPCS_GPG_KEY" || \
+    gpg --keyserver keyserver.pgp.com --recv-keys "$PHPCS_GPG_KEY" || \
+    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPCS_GPG_KEY" ; \
+	\
 	&& gpg --batch --verify /usr/local/bin/phpcs.phar.asc /usr/local/bin/phpcs.phar \
 	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpcs.phar.asc \
 	&& echo "$PHPCS_SHA256 */usr/local/bin/phpcs.phar" | sha256sum -c - \
@@ -119,8 +128,12 @@ RUN set -ex; \
 	&& mv /usr/local/bin/phpcs.phar /usr/local/bin/phpcs \
     && curl -o /usr/local/bin/phpcbf.phar -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCBF_VERSION}/phpcbf.phar" \
 	&& curl -o /usr/local/bin/phpcbf.phar.asc -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCBF_VERSION}/phpcbf.phar.asc" \
-	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPCBF_GPG_KEY" \
+	&& export GNUPGHOME="$(mktemp -d)" ; \
+	\
+	gpg --keyserver pgp.mit.edu --recv-keys "$PHPCBF_GPG_KEY" || \
+    gpg --keyserver keyserver.pgp.com --recv-keys "$PHPCBF_GPG_KEY" || \
+    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPCBF_GPG_KEY" ; \
+	\
 	&& gpg --batch --verify /usr/local/bin/phpcbf.phar.asc /usr/local/bin/phpcbf.phar \
 	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpcbf.phar.asc \
 	&& echo "$PHPCBF_SHA256 */usr/local/bin/phpcbf.phar" | sha256sum -c - \
