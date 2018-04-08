@@ -95,7 +95,6 @@ RUN set -ex; \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPCS_GPG_KEY" ; \
 	gpg --batch --verify /usr/local/bin/phpcs.phar.asc /usr/local/bin/phpcs.phar \
 	\
-	&& gpg --batch --verify /usr/local/bin/phpcs.phar.asc /usr/local/bin/phpcs.phar \
 	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpcs.phar.asc \
 	&& echo "$PHPCS_SHA256 */usr/local/bin/phpcs.phar" | sha256sum -c - \
 	&& chmod +x /usr/local/bin/phpcs.phar \
