@@ -103,10 +103,10 @@ RUN set -ex; \
 	&& curl -o /usr/local/bin/phpcbf.phar.asc -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCBF_VERSION}/phpcbf.phar.asc" \
 	&& export GNUPGHOME="$(mktemp -d)" ; \
 	\
-	gpg --keyserver pgp.mit.edu --recv-keys "$PHPCS_GPG_KEY" || \
-    gpg --keyserver keyserver.pgp.com --recv-keys "$PHPCS_GPG_KEY" || \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPCS_GPG_KEY" ; \
-	gpg --batch --verify /usr/local/bin/phpcs.phar.asc /usr/local/bin/phpcs.phar \
+	gpg --keyserver pgp.mit.edu --recv-keys "$PHPCBF_GPG_KEY" || \
+    gpg --keyserver keyserver.pgp.com --recv-keys "$PHPCBF_GPG_KEY" || \
+    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPCBF_GPG_KEY" ; \
+	gpg --batch --verify /usr/local/bin/phpcbf.phar.asc /usr/local/bin/phpcbf.phar \
 	\
 	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpcbf.phar.asc \
 	&& echo "$PHPCBF_SHA256 */usr/local/bin/phpcbf.phar" | sha256sum -c - \
