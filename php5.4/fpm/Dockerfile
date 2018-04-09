@@ -30,6 +30,19 @@ RUN set -ex; \
 	chown -R www-data:www-data /usr/src/wordpress
 
 ##<wp-docklines>##
+# Install extra packages
+RUN set -ex; \
+	apt-get update \
+	&& EXTRA_PACKAGES=" \
+		mysql-client \
+		ssh \
+		unzip \
+		subversion \
+		git \
+	" \
+	&& apt-get install -y $EXTRA_PACKAGES --no-install-recommends \
+	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
+
 # Install WP-CLI
 # pub   2048R/2F6B6B7F 2016-01-07
 #       Key fingerprint = 3B91 9162 5F3B 1F1B F5DD  3B47 673A 0204 2F6B 6B7F
