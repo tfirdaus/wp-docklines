@@ -49,9 +49,9 @@ RUN set -ex; \
 #                 aka "Sebastian Bergmann <sebastian.bergmann@thephp.cc>"
 #                 aka "[jpeg image of size 40635]"
 # Primary key fingerprint: D840 6D0D 8294 7747 2937  7831 4AA3 9408 6372 C20A
-ENV PHPUNIT_VERSION 6.5.7
+ENV PHPUNIT_VERSION 6.5.8
 ENV PHPUNIT_GPG_KEY D8406D0D82947747293778314AA394086372C20A
-ENV PHPUNIT_SHA256 4652b6052806e672f2f5670e1b46dec34ad9f5c144613f5ea222c8e3e7e9400a
+ENV PHPUNIT_SHA256 ff911ab2d6900efe65b25c404a83bc8a74fe6f443606d170dc05738f887b2238
 
 RUN set -ex; \
 	curl -o /usr/local/bin/phpunit.phar -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar" \
