@@ -48,9 +48,9 @@ RUN set -ex; \
 #       Key fingerprint = 3B91 9162 5F3B 1F1B F5DD  3B47 673A 0204 2F6B 6B7F
 # uid                  Daniel Bachhuber <daniel@handbuilt.co>
 # sub   2048R/45F9CDE2 2016-01-07
-ENV WP_CLI_VERSION 1.5.0
+ENV WP_CLI_VERSION 1.5.1
 ENV WP_CLI_GPG_KEY 3B9191625F3B1F1BF5DD3B47673A02042F6B6B7F
-ENV WP_CLI_SHA512 9385c63ab835c7c450529035cdb1f524b5878a67c7565c3497628e5ec4ec07ae4a34ef25c59a9e7d6edea7cdb039fcef7a1f731b922782b8c70418480bdff122
+ENV WP_CLI_SHA512 8693cdbc06cca37be9976c4f76aa81c111095f88bb121277cbdfa85f8a2ada3b9133cd9641c439e6f5579d3469a1a44488e872ecbff3d3eba0488bbc8033d6d8
 
 RUN set -ex; \
 	curl -o /usr/local/bin/wp.gpg -fSL "https://github.com/wp-cli/wp-cli/releases/download/v${WP_CLI_VERSION}/wp-cli-${WP_CLI_VERSION}.phar.gpg" \

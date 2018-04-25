@@ -1,8 +1,8 @@
 # WP Docklines
 
-[![Travis](https://img.shields.io/travis/tfirdaus/wp-docklines.svg?style=flat-square)](https://travis-ci.org/tfirdaus/wp-docklines) [![Docker Build Status](https://img.shields.io/docker/build/tfirdaus/wp-docklines.svg?style=flat-square)](https://hub.docker.com/r/tfirdaus/wp-docklines/) [![Docker Automated build](https://img.shields.io/docker/automated/tfirdaus/wp-docklines.svg?style=flat-square)](https://hub.docker.com/r/tfirdaus/wp-docklines/) [![Docker Pulls](https://img.shields.io/docker/pulls/tfirdaus/wp-docklines.svg?style=flat-square)](https://hub.docker.com/r/tfirdaus/wp-docklines/) [![License](https://img.shields.io/github/license/tfirdaus/wp-docklines.svg?style=flat-square)](https://github.com/tfirdaus/wp-docklines)
+[![Travis](https://img.shields.io/travis/tfirdaus/wp-docklines.svg?style=flat-square)](https://travis-ci.org/tfirdaus/wp-docklines) [![Docker Pulls](https://img.shields.io/docker/pulls/tfirdaus/wp-docklines.svg?style=flat-square)](https://hub.docker.com/r/tfirdaus/wp-docklines/) [![License](https://img.shields.io/github/license/tfirdaus/wp-docklines.svg?style=flat-square)](https://github.com/tfirdaus/wp-docklines)
 
-A WordPress [Docker](https://www.docker.com/) image derivative for setting up a local environment to develop WordPress plugins or themes locally in your computer and to perform CI (Continuous Integration) or CD (Continuous Delivery) in services like [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines). Each of these Docker images includes:
+WordPress [Docker](https://www.docker.com/) images for setting up and running a WordPress development environment. Each of these Docker images include:
 
 - [WordPress](https://wordpress.org/download/)
 - [WP-CLI](http://wp-cli.org/)
@@ -16,23 +16,23 @@ See the following table for version of each package included:
 
 | Image | WP-CLI | PHPUnit | PHPCS | WPCS | Node.js | NPM | SVN | Git |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `php5.4-apache`     | 1.5.0 | 4.8.36 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
-| `php5.4-fpm`        | 1.5.0 | 4.8.36 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
-| `php5.5-apache`     | 1.5.0 | 4.8.36 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
-| `php5.5-fpm`        | 1.5.0 | 4.8.36 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
-| `php5.5-fpm-alpine` | 1.5.0 | 4.8.36 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.9.7  | 2.8.6  |
-| `php5.6-apache`     | 1.5.0 | 5.7.27 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
-| `php5.6-fpm`        | 1.5.0 | 5.7.27 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
-| `php5.6-fpm-alpine` | 1.5.0 | 5.7.27 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.9.7  | 2.8.6  |
-| `php7.0-apache`     | 1.5.0 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
-| `php7.0-fpm`        | 1.5.0 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
-| `php7.0-fpm-alpine` | 1.5.0 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.9.7  | 2.8.6  |
-| `php7.1-apache`     | 1.5.0 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
-| `php7.1-fpm`        | 1.5.0 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
-| `php7.1-fpm-alpine` | 1.5.0 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.9.7  | 2.8.6  |
-| `php7.2-apache`     | 1.5.0 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.9.5  | 2.11.0 |
-| `php7.2-fpm`        | 1.5.0 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.9.5  | 2.11.0 |
-| `php7.2-fpm-alpine` | 1.5.0 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.9.7  | 2.13.5 |
+| `php5.4-apache`     | 1.5.1 | 4.8.36 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
+| `php5.4-fpm`        | 1.5.1 | 4.8.36 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
+| `php5.5-apache`     | 1.5.1 | 4.8.36 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
+| `php5.5-fpm`        | 1.5.1 | 4.8.36 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
+| `php5.5-fpm-alpine` | 1.5.1 | 4.8.36 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.9.7  | 2.8.6  |
+| `php5.6-apache`     | 1.5.1 | 5.7.27 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
+| `php5.6-fpm`        | 1.5.1 | 5.7.27 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
+| `php5.6-fpm-alpine` | 1.5.1 | 5.7.27 | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.9.7  | 2.8.6  |
+| `php7.0-apache`     | 1.5.1 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
+| `php7.0-fpm`        | 1.5.1 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
+| `php7.0-fpm-alpine` | 1.5.1 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.9.7  | 2.8.6  |
+| `php7.1-apache`     | 1.5.1 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
+| `php7.1-fpm`        | 1.5.1 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.8.10 | 2.1.4  |
+| `php7.1-fpm-alpine` | 1.5.1 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.9.7  | 2.8.6  |
+| `php7.2-apache`     | 1.5.1 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.9.5  | 2.11.0 |
+| `php7.2-fpm`        | 1.5.1 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.9.5  | 2.11.0 |
+| `php7.2-fpm-alpine` | 1.5.1 | 6.5.7  | 3.2.3 | 0.14.1 | 8.11.1 | 5.6.0 | 1.9.7  | 2.13.5 |
 
 ## PHP Libraries / Extensions
 
