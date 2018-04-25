@@ -1,8 +1,10 @@
 # WP Docklines
 
-[![Travis](https://img.shields.io/travis/tfirdaus/wp-docklines.svg?style=flat-square)](https://travis-ci.org/tfirdaus/wp-docklines) [![Docker Pulls](https://img.shields.io/docker/pulls/tfirdaus/wp-docklines.svg?style=flat-square)](https://hub.docker.com/r/tfirdaus/wp-docklines/) [![License](https://img.shields.io/github/license/tfirdaus/wp-docklines.svg?style=flat-square)](https://github.com/tfirdaus/wp-docklines)
+[![Travis](https://img.shields.io/travis/tfirdaus/wp-docklines.svg?style=for-the-badge)](https://travis-ci.org/tfirdaus/wp-docklines) [![Docker Pulls](https://img.shields.io/docker/pulls/tfirdaus/wp-docklines.svg?style=for-the-badge)](https://hub.docker.com/r/tfirdaus/wp-docklines/) [![License](https://img.shields.io/github/license/tfirdaus/wp-docklines.svg?style=for-the-badge)](https://github.com/tfirdaus/wp-docklines)
 
-WordPress [Docker](https://www.docker.com/) images for setting up and running a WordPress development environment. Each of these Docker images include:
+> WordPress [Docker](https://www.docker.com/) images for setting up and running a WordPress development environment.
+
+Each of these Docker images include:
 
 - [WordPress](https://wordpress.org/download/)
 - [WP-CLI](http://wp-cli.org/)
