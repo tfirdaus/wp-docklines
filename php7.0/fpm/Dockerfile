@@ -7,7 +7,6 @@ RUN set -ex; \
 	apt-get update \
 	&& EXTRA_PACKAGES=" \
 		mysql-client \
-		ssh \
 		unzip \
 		subversion \
 		git \
@@ -16,56 +15,24 @@ RUN set -ex; \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*
 
 # Install WP-CLI
-# pub   2048R/2F6B6B7F 2016-01-07
-#       Key fingerprint = 3B91 9162 5F3B 1F1B F5DD  3B47 673A 0204 2F6B 6B7F
-# uid                  Daniel Bachhuber <daniel@handbuilt.co>
-# sub   2048R/45F9CDE2 2016-01-07
 ENV WP_CLI_VERSION 1.5.1
-ENV WP_CLI_GPG_KEY 3B9191625F3B1F1BF5DD3B47673A02042F6B6B7F
 ENV WP_CLI_SHA512 8693cdbc06cca37be9976c4f76aa81c111095f88bb121277cbdfa85f8a2ada3b9133cd9641c439e6f5579d3469a1a44488e872ecbff3d3eba0488bbc8033d6d8
 
 RUN set -ex; \
-	curl -o /usr/local/bin/wp.gpg -fSL "https://github.com/wp-cli/wp-cli/releases/download/v${WP_CLI_VERSION}/wp-cli-${WP_CLI_VERSION}.phar.gpg" \
-	&& export GNUPGHOME="$(mktemp -d)" ; \
-	\
-	gpg --keyserver pgp.mit.edu --recv-keys "$WP_CLI_GPG_KEY" || \
-    gpg --keyserver keyserver.pgp.com --recv-keys "$WP_CLI_GPG_KEY" || \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$WP_CLI_GPG_KEY" ; \
-	gpg --batch --decrypt --output /usr/local/bin/wp /usr/local/bin/wp.gpg \
-	\
-	&& rm -rf "$GNUPGHOME" /usr/local/bin/wp.gpg \
-	&& echo "$WP_CLI_SHA512 */usr/local/bin/wp" | sha512sum -c - \
-	&& chmod +x /usr/local/bin/wp \
+	curl -o /usr/local/bin/wp.phar -fSL "https://github.com/wp-cli/wp-cli/releases/download/v${WP_CLI_VERSION}/wp-cli-${WP_CLI_VERSION}.phar" \
+	&& echo "$WP_CLI_SHA512 */usr/local/bin/wp.phar" | sha512sum -c - \
+	&& chmod +x /usr/local/bin/wp.phar \
+	&& mv /usr/local/bin/wp.phar /usr/local/bin/wp \
 	&& mkdir -p /var/www/.wp-cli && chown www-data:www-data -R /var/www/.wp-cli \
 	&& wp cli info
 
 # Install PHPUnit
 # SHA256 source: https://phar.phpunit.de/
-# Signature made Sat 19 Jul 2014 01:28:02 PM CEST using RSA key ID 6372C20A
-# Good signature from "Sebastian Bergmann <sb@sebastian-bergmann.de>"
-#                 aka "Sebastian Bergmann <sebastian@php.net>"
-#                 aka "Sebastian Bergmann <sebastian@thephp.cc>"
-#                 aka "Sebastian Bergmann <sebastian@phpunit.de>"
-#                 aka "Sebastian Bergmann <sebastian.bergmann@thephp.cc>"
-#                 aka "[jpeg image of size 40635]"
-# Primary key fingerprint: D840 6D0D 8294 7747 2937  7831 4AA3 9408 6372 C20A
 ENV PHPUNIT_VERSION 6.5.8
-ENV PHPUNIT_GPG_KEY D8406D0D82947747293778314AA394086372C20A
 ENV PHPUNIT_SHA256 ff911ab2d6900efe65b25c404a83bc8a74fe6f443606d170dc05738f887b2238
 
 RUN set -ex; \
 	curl -o /usr/local/bin/phpunit.phar -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar" \
-	&& curl -o /usr/local/bin/phpunit.phar.asc -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar.asc" \
-	&& export GNUPGHOME="$(mktemp -d)" ; \
-	\
-	gpg --keyserver pgp.uni-mainz.de --recv-keys "$PHPUNIT_GPG_KEY" || \
-	gpg --keyserver pgp.mit.edu --recv-keys "$PHPUNIT_GPG_KEY" || \
-    gpg --keyserver keyserver.pgp.com --recv-keys "$PHPUNIT_GPG_KEY" || \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPUNIT_GPG_KEY" ; \
-	gpg --batch --verify /usr/local/bin/phpunit.phar.asc /usr/local/bin/phpunit.phar \
-	\
-	&& gpg --batch --verify /usr/local/bin/phpunit.phar.asc /usr/local/bin/phpunit.phar \
-	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpunit.phar.asc \
 	&& echo "$PHPUNIT_SHA256 */usr/local/bin/phpunit.phar" | sha256sum -c - \
 	&& chmod +x /usr/local/bin/phpunit.phar \
 	&& mv /usr/local/bin/phpunit.phar /usr/local/bin/phpunit \
@@ -73,43 +40,20 @@ RUN set -ex; \
 
 # Install PHP CodeSniffer && WordPress Coding Standards
 # SHA256 source: https://squizlabs.github.io/PHP_CodeSniffer/phars/phive.xml
-# Signature made Tue Dec 19 21:59:03 2017 UTC using RSA key ID E2138192
-# Good signature from "Greg Sherwood <gsherwood@squiz.net>"
-# Primary key fingerprint: A972 B9AB B95D 0B76 0B51  4422 31C7 E470 E213 8192
 ENV PHPCS_VERSION 3.2.3
-ENV PHPCS_GPG_KEY A972B9ABB95D0B760B51442231C7E470E2138192
 ENV PHPCS_SHA256 41ef9d09fca6be1dce5ee6b946a59461f4955245c3038c0ac17e0669caef6aa4
 
 ENV PHPCBF_VERSION $PHPCS_VERSION
-ENV PHPCBF_GPG_KEY $PHPCS_GPG_KEY
 ENV PHPCBF_SHA256 34a94620615b674ef4ed44ab1648a9f1c874b35b4d48239e81a177a803a0e002
 
 ENV WPCS_VERSION 0.14.1
 
 RUN set -ex; \
 	curl -o /usr/local/bin/phpcs.phar -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCS_VERSION}/phpcs.phar" \
-	&& curl -o /usr/local/bin/phpcs.phar.asc -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCS_VERSION}/phpcs.phar.asc" \
-	&& export GNUPGHOME="$(mktemp -d)" ; \
-	\
-	gpg --keyserver pgp.mit.edu --recv-keys "$PHPCS_GPG_KEY" || \
-    gpg --keyserver keyserver.pgp.com --recv-keys "$PHPCS_GPG_KEY" || \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPCS_GPG_KEY" ; \
-	gpg --batch --verify /usr/local/bin/phpcs.phar.asc /usr/local/bin/phpcs.phar \
-	\
-	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpcs.phar.asc \
 	&& echo "$PHPCS_SHA256 */usr/local/bin/phpcs.phar" | sha256sum -c - \
 	&& chmod +x /usr/local/bin/phpcs.phar \
 	&& mv /usr/local/bin/phpcs.phar /usr/local/bin/phpcs \
-    && curl -o /usr/local/bin/phpcbf.phar -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCBF_VERSION}/phpcbf.phar" \
-	&& curl -o /usr/local/bin/phpcbf.phar.asc -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCBF_VERSION}/phpcbf.phar.asc" \
-	&& export GNUPGHOME="$(mktemp -d)" ; \
-	\
-	gpg --keyserver pgp.mit.edu --recv-keys "$PHPCBF_GPG_KEY" || \
-    gpg --keyserver keyserver.pgp.com --recv-keys "$PHPCBF_GPG_KEY" || \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHPCBF_GPG_KEY" ; \
-	gpg --batch --verify /usr/local/bin/phpcbf.phar.asc /usr/local/bin/phpcbf.phar \
-	\
-	&& rm -rf "$GNUPGHOME" /usr/local/bin/phpcbf.phar.asc \
+	&& curl -o /usr/local/bin/phpcbf.phar -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCBF_VERSION}/phpcbf.phar" \
 	&& echo "$PHPCBF_SHA256 */usr/local/bin/phpcbf.phar" | sha256sum -c - \
 	&& chmod +x /usr/local/bin/phpcbf.phar \
 	&& mv /usr/local/bin/phpcbf.phar /usr/local/bin/phpcbf \
@@ -121,42 +65,3 @@ RUN set -ex; \
 	&& phpcs --config-set show_progress 1 \
 	&& phpcs --config-set colors 1 \
 	&& phpcs --config-set installed_paths /var/wpcs
-
-# Install NodeJS && NPM
-# Node GPG Keys https://github.com/nodejs/node#release-team
-ENV NODE_VERSION 8.11.1
-
-RUN set -ex; \
-	for key in \
-	    94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
-	    FD3A5288F042B6850C66B31F09FE44734EB7990E \
-	    71DCFD284A79C3B38668286BC97EC7A07EDE3FC1 \
-	    DD8F2338BAE7501E3DD5AC78C273792F7D83545D \
-	    C4F0DFFF4E8C1A8236409D08E73BC641CC11F4C8 \
-	    B9AE9905FFD7803F25714661B63B535A4C206CA9 \
-	    56730D5401028683275BD23C23EFEFE93C4CFFFE \
-	    77984A986EBC2AA786BC0F66B01FBB92821C587A \
-  	; do \
-    gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
-    gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" ; \
-  	done \
-	&& ARCH= && dpkgArch="$(dpkg --print-architecture)" \
-	&& case "${dpkgArch##*-}" in \
-		amd64) ARCH='x64';; \
-		ppc64el) ARCH='ppc64le';; \
-		s390x) ARCH='s390x';; \
-		arm64) ARCH='arm64';; \
-		armhf) ARCH='armv7l';; \
-		i386) ARCH='x86';; \
-	    *) echo "unsupported architecture"; exit 1 ;; \
-		esac \
-	&& curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.xz" \
-	&& curl -SLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
-	&& gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
-	&& grep " node-v$NODE_VERSION-linux-$ARCH.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
-	&& tar -xJf "node-v$NODE_VERSION-linux-$ARCH.tar.xz" -C /usr/local --strip-components=1 --no-same-owner \
-	&& rm "node-v$NODE_VERSION-linux-$ARCH.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
-	&& ln -s /usr/local/bin/node /usr/local/bin/nodejs \
-	&& node --version \
-	&& npm --version

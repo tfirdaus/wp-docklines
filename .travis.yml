@@ -1,6 +1,10 @@
 language: bash
 services: docker
 
+branches:
+  except:
+  - master
+
 env:
   - VARIANT=php5.4/apache
   - VARIANT=php5.4/fpm
@@ -19,14 +23,13 @@ env:
   - VARIANT=php7.2/apache
   - VARIANT=php7.2/fpm
   - VARIANT=php7.2/fpm-alpine
-  - VARIANT=latest
 
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images
 
 before_script:
   - env | sort
-  - if [ "$VARIANT" == "latest" ]; then cd php7.2/apache; else cd "$VARIANT"; fi
+  - cd "$VARIANT"
   - slash='/'; tag="${VARIANT//$slash/-}"; image="tfirdaus/wp-docklines:$tag"
 
 script:
@@ -34,12 +37,8 @@ script:
 
 after_script:
   - docker images
-  - docker run "$image" /bin/sh -c "php --version; wp --version --allow-root; phpunit --version; phpcs --version; node -v; npm -v; svn --version; git --version"
 
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker push "$image";
-    fi
+  - docker run "$image" /bin/sh -c "php --version; wp --version --allow-root; phpunit --version; phpcs --version; svn --version; git --version"
 
 # vim:set et ts=2 sw=2:
