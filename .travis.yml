@@ -37,8 +37,6 @@ script:
 
 after_script:
   - docker images
-
-after_success:
-  - docker run "$image" /bin/sh -c "php --version; wp --version --allow-root; phpunit --version; phpcs --version; svn --version; git --version"
+  - docker run "$image" /bin/sh -c "php --version; wp --version --allow-root; phpunit --version; phpcs --version; svn --version; git --version; ssh -V"
 
 # vim:set et ts=2 sw=2:

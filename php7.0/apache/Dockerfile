@@ -10,6 +10,7 @@ RUN set -ex; \
 		unzip \
 		subversion \
 		git \
+		ssh \
 	" \
 	&& apt-get install -y $EXTRA_PACKAGES --no-install-recommends \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/*

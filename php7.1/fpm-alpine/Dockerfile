@@ -4,7 +4,7 @@ LABEL Thoriq Firdaus <thoriqoe@gmail.com>
 
 # Install extra packages
 RUN set -ex; \
-	apk add --update --no-cache mysql-client unzip subversion git
+	apk add --update --no-cache mysql-client openssh-client unzip subversion git
 
 # Install WP-CLI
 ENV WP_CLI_VERSION 1.5.1
