@@ -17,4 +17,4 @@ RUN set -ex; \
 	&& stylelint --version
 
 EXPOSE 3000
-CMD ["http-server -p 3000"]
+CMD ["http-server", "-p", "3000"]
