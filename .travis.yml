@@ -23,6 +23,8 @@ env:
   - VARIANT=php7.2/apache
   - VARIANT=php7.2/fpm
   - VARIANT=php7.2/fpm-alpine
+  - VARIANT=node/jessie
+  - VARIANT=node/alpine
 
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images
@@ -31,12 +33,19 @@ before_script:
   - env | sort
   - cd "$VARIANT"
   - slash='/'; tag="${VARIANT//$slash/-}"; image="tfirdaus/wp-docklines:$tag"
+  - slash='/'; tag="${VARIANT%/*}"; echo $tag
+STRING='node/alpine'; echo "${STRING%%/*}"
 
 script:
   - travis_retry docker build -t "$image" .
 
 after_script:
   - docker images
-  - docker run "$image" /bin/sh -c "php --version; wp --version --allow-root; phpunit --version; phpcs --version; svn --version; git --version; ssh -V"
+  - IMAGEVAR="${VARIANT%%/*}"
+  - if [[ $IMAGEVAR == 'node' ]];
+      docker run "$image" /bin/sh -c "node --version; npm --version; gulp --version; grunt --version; eslint --version; stylelint --version"
+    else
+      docker run "$image" /bin/sh -c "php --version; wp --version --allow-root; phpunit --version; phpcs --version; svn --version; git --version; ssh -V"
+    fi
 
 # vim:set et ts=2 sw=2:
