@@ -33,8 +33,6 @@ before_script:
   - env | sort
   - cd "$VARIANT"
   - slash='/'; tag="${VARIANT//$slash/-}"; image="tfirdaus/wp-docklines:$tag"
-  - slash='/'; tag="${VARIANT%/*}"; echo $tag
-STRING='node/alpine'; echo "${STRING%%/*}"
 
 script:
   - travis_retry docker build -t "$image" .
