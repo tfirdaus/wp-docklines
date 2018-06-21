@@ -3,6 +3,10 @@ FROM node:8-jessie
 LABEL Thoriq Firdaus <thoriqoe@gmail.com>
 
 RUN set -ex; \
+	mkdir -p /var/www/ \
+	&& chown www-data:www-data -R /var/www/
+
+RUN set -ex; \
 	npm install --global ---verbose \
 		http-server \
 		gulp-cli \
@@ -15,6 +19,3 @@ RUN set -ex; \
 	&& grunt --version \
 	&& eslint --version \
 	&& stylelint --version
-
-EXPOSE 3000
-CMD ["http-server", "-p", "3000"]

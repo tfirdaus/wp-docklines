@@ -2,8 +2,17 @@ FROM node:8-alpine
 
 LABEL Thoriq Firdaus <thoriqoe@gmail.com>
 
+# Ensure the www-data user exists.
+RUN set -x ; \
+	addgroup -g 82 -S www-data ; \
+	adduser -u 82 -D -S -G www-data www-data && exit 0 ; exit 1
+
 RUN set -ex; \
-	npm install --global --verbose \
+	mkdir -p /var/www/ \
+	&& chown www-data:www-data -R /var/www/
+
+RUN set -ex; \
+	npm install --global ---verbose \
 		http-server \
 		gulp-cli \
 		grunt-cli \
@@ -15,6 +24,3 @@ RUN set -ex; \
 	&& grunt --version \
 	&& eslint --version \
 	&& stylelint --version
-
-EXPOSE 3000
-CMD ["http-server", "-p", "3000"]
