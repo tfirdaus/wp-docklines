@@ -9,6 +9,8 @@ RUN set -ex; \
 		grunt-cli \
 		eslint \
 		stylelint \
+	&& node --version \
+	&& npm --version \
 	&& gulp --version \
 	&& grunt --version \
 	&& eslint --version \

@@ -3,12 +3,14 @@ FROM node:8-alpine
 LABEL Thoriq Firdaus <thoriqoe@gmail.com>
 
 RUN set -ex; \
-	npm install --global \
+	npm install --global --verbose \
 		http-server \
 		gulp-cli \
 		grunt-cli \
 		eslint \
 		stylelint \
+	&& node --version \
+	&& npm --version \
 	&& gulp --version \
 	&& grunt --version \
 	&& eslint --version \
