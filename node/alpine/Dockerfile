@@ -11,6 +11,10 @@ RUN set -ex; \
 	mkdir -p /var/www/ \
 	&& chown www-data:www-data -R /var/www/
 
+# Image extra packages.
+RUN apk add --no-cache bash
+
+# Node extra packages
 RUN set -ex; \
 	npm i npm@latest -g \
 	npm install --global ---verbose \
