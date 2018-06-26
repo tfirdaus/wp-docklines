@@ -39,10 +39,10 @@ See the following table for version of each package included:
 
 ## Node Images
 
-| Image | Node | NPM | Gulp CLI | Grunt CLI | ESLint | Stylelint |
-| --- | --- | --- | --- | --- | --- | --- |
-| `jessie`  | 8.11.3 | 6.1.0 | 2.0.1 | 1.2.0 | 4.19.1 | 9.3.0 |
-| `alpine`  | 8.11.3 | 6.1.0 | 2.0.1 | 1.2.0 | 4.19.1 | 9.3.0 |
+| Image | Node | NPM | Yarn | Gulp CLI | Grunt CLI | ESLint | Stylelint |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `jessie`  | 8.11.3 | 6.1.0 | 1.7.0 | 2.0.1 | 1.2.0 | 4.19.1 | 9.3.0 |
+| `alpine`  | 8.11.3 | 6.1.0 | 1.7.0 | 2.0.1 | 1.2.0 | 4.19.1 | 9.3.0 |
 
 ## PHP Libraries / Extensions
 
