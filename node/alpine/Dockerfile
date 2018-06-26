@@ -12,6 +12,7 @@ RUN set -ex; \
 	&& chown www-data:www-data -R /var/www/
 
 RUN set -ex; \
+	npm i npm@latest -g \
 	npm install --global ---verbose \
 		http-server \
 		gulp-cli \

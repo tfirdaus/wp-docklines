@@ -41,8 +41,8 @@ See the following table for version of each package included:
 
 | Image | Node | NPM | Gulp CLI | Grunt CLI | ESLint | Stylelint |
 | --- | --- | --- | --- | --- | --- | --- |
-| `jessie`  | 8.11.3 | 5.6.0 | 2.0.1 | 1.2.0 | 4.19.1 | 9.3.0 |
-| `alpine`  | 8.11.3 | 5.6.0 | 2.0.1 | 1.2.0 | 4.19.1 | 9.3.0 |
+| `jessie`  | 8.11.3 | 6.1.0 | 2.0.1 | 1.2.0 | 4.19.1 | 9.3.0 |
+| `alpine`  | 8.11.3 | 6.1.0 | 2.0.1 | 1.2.0 | 4.19.1 | 9.3.0 |
 
 ## PHP Libraries / Extensions
 
