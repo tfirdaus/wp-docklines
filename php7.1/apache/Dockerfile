@@ -29,8 +29,8 @@ RUN set -ex; \
 
 # Install PHPUnit
 # SHA256 source: https://phar.phpunit.de/
-ENV PHPUNIT_VERSION 6.5.8
-ENV PHPUNIT_SHA256 ff911ab2d6900efe65b25c404a83bc8a74fe6f443606d170dc05738f887b2238
+ENV PHPUNIT_VERSION 6.5.9
+ENV PHPUNIT_SHA256 047523dfd3fdc75d8f4b97e9d31679d091045a47a1b41e454df8fa840baba334
 
 RUN set -ex; \
 	curl -o /usr/local/bin/phpunit.phar -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar" \
@@ -41,11 +41,11 @@ RUN set -ex; \
 
 # Install PHP CodeSniffer && WordPress Coding Standards
 # SHA256 source: https://squizlabs.github.io/PHP_CodeSniffer/phars/phive.xml
-ENV PHPCS_VERSION 3.2.3
-ENV PHPCS_SHA256 41ef9d09fca6be1dce5ee6b946a59461f4955245c3038c0ac17e0669caef6aa4
+ENV PHPCS_VERSION 3.3.0
+ENV PHPCS_SHA256 90442ce92ffccfad906f411919d26be54005064463707ea4beba3684d92e83fe
 
 ENV PHPCBF_VERSION $PHPCS_VERSION
-ENV PHPCBF_SHA256 34a94620615b674ef4ed44ab1648a9f1c874b35b4d48239e81a177a803a0e002
+ENV PHPCBF_SHA256 9a9e93310a4e9de509aa06648e69fc91b8141661abb818aeb421e4fa5f3100aa
 
 ENV WPCS_VERSION 0.14.1
 
