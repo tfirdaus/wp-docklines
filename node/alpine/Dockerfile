@@ -12,7 +12,7 @@ RUN set -ex; \
 	&& chown www-data:www-data -R /var/www/
 
 # Image extra packages.
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash openssh-client
 
 # Node extra packages
 RUN set -ex; \
