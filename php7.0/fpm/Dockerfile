@@ -29,8 +29,8 @@ RUN set -ex; \
 
 # Install PHPUnit
 # SHA256 source: https://phar.phpunit.de/
-ENV PHPUNIT_VERSION 6.5.9
-ENV PHPUNIT_SHA256 047523dfd3fdc75d8f4b97e9d31679d091045a47a1b41e454df8fa840baba334
+ENV PHPUNIT_VERSION 6.5.11
+ENV PHPUNIT_SHA256 6ba8fd5531bab0565da834cae0e9c70c81e1f767b6d79a66b893a8fec40205cb
 
 RUN set -ex; \
 	curl -o /usr/local/bin/phpunit.phar -fSL "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar" \
