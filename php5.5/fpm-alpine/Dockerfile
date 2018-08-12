@@ -58,8 +58,8 @@ RUN set -ex; \
 	apk add --update --no-cache mysql-client openssh-client unzip subversion git
 
 # Install WP-CLI
-ENV WP_CLI_VERSION 1.5.1
-ENV WP_CLI_SHA512 8dd68c98c6fa00e1acc5e036f9393c8b052937045b5232e4aa0eb4f15773908eae48760607bc853a4f951bd5ba69e5050337e5d9dcfa48df87a12cebb1de3432
+ENV WP_CLI_VERSION 2.0.0
+ENV WP_CLI_SHA512 18c15c792a0747e434f70fb74f8d82dbc6dc504bd6238a4928859430129f12d88d829a1f37203c30813eb5f4d2c69f4e40aa15c74d9c6f01343052f01842463b
 
 RUN set -ex; \
 	curl -o /usr/local/bin/wp.phar -fSL "https://github.com/wp-cli/wp-cli/releases/download/v${WP_CLI_VERSION}/wp-cli-${WP_CLI_VERSION}.phar" \
