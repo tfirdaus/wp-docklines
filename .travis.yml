@@ -45,5 +45,3 @@ after_script:
     else
       docker run "$image" /bin/sh -c "php --version; wp --version --allow-root; phpunit --version; phpcs --version; svn --version; git --version; ssh -V"
     fi
-
-# vim:set et ts=2 sw=2:
