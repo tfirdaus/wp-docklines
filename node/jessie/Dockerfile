@@ -16,6 +16,7 @@ RUN set -ex; \
 		stylelint \
 	&& node --version \
 	&& npm --version \
+	&& yarn --version \
 	&& gulp --version \
 	&& grunt --version \
 	&& eslint --version \
