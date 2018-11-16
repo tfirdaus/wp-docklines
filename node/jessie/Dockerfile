@@ -1,4 +1,4 @@
-FROM node:jessie
+FROM node:10-jessie
 
 LABEL Thoriq Firdaus <thoriqoe@gmail.com>
 
