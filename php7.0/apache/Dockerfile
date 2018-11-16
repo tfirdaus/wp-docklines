@@ -47,7 +47,7 @@ ENV PHPCS_SHA256 692a281f40b0afa3120f25e195102d0d327efef5ef16ce18cb9e5731a45ee35
 ENV PHPCBF_VERSION $PHPCS_VERSION
 ENV PHPCBF_SHA256 c43e2e924bf28eb48f825df12a9031ad4a96bf2e2e609ce78ad2653ce969ace3
 
-ENV WPCS_VERSION 1.0.0
+ENV WPCS_VERSION 1.2.0
 
 RUN set -ex; \
 	curl -o /usr/local/bin/phpcs.phar -fSL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${PHPCS_VERSION}/phpcs.phar" \
