@@ -6,7 +6,7 @@ LABEL Thoriq Firdaus <thoriqoe@gmail.com>
 RUN set -ex; \
 	apt-get update \
 	&& EXTRA_PACKAGES=" \
-		mysql-client \
+		default-mysql-client \
 		unzip \
 		subversion \
 		git \
