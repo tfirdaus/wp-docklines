@@ -23,6 +23,12 @@ env:
   - VARIANT=php7.2/apache
   - VARIANT=php7.2/fpm
   - VARIANT=php7.2/fpm-alpine
+  - VARIANT=php7.3/apache
+  - VARIANT=php7.3/fpm
+  - VARIANT=php7.3/fpm-alpine
+  - VARIANT=php7.4/apache
+  - VARIANT=php7.4/fpm
+  - VARIANT=php7.4/fpm-alpine
   - VARIANT=node/jessie
   - VARIANT=node/alpine
 
