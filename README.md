@@ -23,13 +23,6 @@ See the following table for version of each package included:
 | `php7.2-fpm`        | 2.0.1 | 6.5.13 | 3.3.2 | 1.2.0 | 1.9.5  | 2.11.0 |
 | `php7.2-fpm-alpine` | 2.0.1 | 6.5.13 | 3.3.2 | 1.2.0 | 1.10.0 | 2.18.1 |
 
-## Node Images
-
-| Image | Node | NPM | Yarn | Gulp CLI | Grunt CLI | ESLint | Stylelint |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| `jessie`  | 10.13.0 | 6.4.1 | 1.10.1 | 2.0.1 | 1.3.2 | 5.9.0 | 9.8.0 |
-| `alpine`  | 10.13.0 | 6.4.1 | 1.10.1 | 2.0.1 | 1.3.2 | 5.9.0 | 9.8.0 |
-
 ## PHP Libraries / Extensions
 
 The image also includes the following packages that might be needed for deployment or running a few select WP-CLI commands that require interaction with the `mysql` command such as `wp db import` and `wp db export`:
