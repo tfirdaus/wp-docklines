@@ -7,8 +7,7 @@ RUN set -ex; \
 	apk add --update --no-cache mysql-client openssh-client unzip subversion git
 
 # Install and enable extra PHP extensions.
-RUN docker-php-ext-install mysqli pdo pdo_mysql && \
-	docker-php-ext-enable mysqli pdo pdo_mysql
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 # Install WP-CLI
 ENV WP_CLI_VERSION 2.4.0
