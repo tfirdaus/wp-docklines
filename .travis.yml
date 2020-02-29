@@ -29,10 +29,4 @@ script:
 
 after_script:
   - docker images
-  - IMAGEVAR="${VARIANT%%/*}"
-  - |
-    if [[ "$IMAGEVAR" == "node" ]]; then
-      docker run "$image" /bin/sh -c "node --version; npm --version; yarn --version; gulp --version; grunt --version; eslint --version; stylelint --version"
-    else
-      docker run "$image" /bin/sh -c "php --version; wp --version --allow-root; phpunit --version; phpcs --version; svn --version; git --version"
-    fi
+  - docker run "$image" /bin/sh -c "php --version; wp --version --allow-root; svn --version; git --version"
