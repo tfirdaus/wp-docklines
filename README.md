@@ -8,8 +8,6 @@ Each of these Docker images include:
 
 - [WordPress](https://wordpress.org/download/)
 - [WP-CLI](http://wp-cli.org/)
-- [PHPUnit](https://phpunit.de/)
-- [PHPCS](https://github.com/squizlabs/PHP_CodeSniffer) with [WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)
 - [Subversion](https://subversion.apache.org/)
 - [Git](https://git-scm.com/)
 
@@ -17,11 +15,17 @@ See the following table for version of each package included:
 
 ## PHP Images
 
-| Image | WP-CLI | PHPUnit | PHPCS | WPCS | SVN | Git |
-| --- | --- | --- | --- | --- | --- | --- |
-| `php7.2-apache`     | 2.0.1 | 6.5.13 | 3.3.2 | 1.2.0 | 1.9.5  | 2.11.0 |
-| `php7.2-fpm`        | 2.0.1 | 6.5.13 | 3.3.2 | 1.2.0 | 1.9.5  | 2.11.0 |
-| `php7.2-fpm-alpine` | 2.0.1 | 6.5.13 | 3.3.2 | 1.2.0 | 1.10.0 | 2.18.1 |
+| Image | WP-CLI | SVN | Git |
+| --- | --- | --- | --- |
+| `php7.2-apache`     | 2.4.0 | 1.10.4 | 2.20.1 |
+| `php7.2-fpm`        | 2.4.0 | 1.10.4 | 2.20.1 |
+| `php7.2-fpm-alpine` | 2.4.0 | 1.12.2 | 2.24.1 |
+| `php7.3-apache`     | 2.4.0 | 1.10.4 | 2.20.1 |
+| `php7.3-fpm`        | 2.4.0 | 1.10.4 | 2.20.1 |
+| `php7.3-fpm-alpine` | 2.4.0 | 1.12.2 | 2.24.1 |
+| `php7.4-apache`     | 2.4.0 | 1.10.4 | 2.20.1 |
+| `php7.4-fpm`        | 2.4.0 | 1.10.4 | 2.20.1 |
+| `php7.4-fpm-alpine` | 2.4.0 | 1.12.2 | 2.24.1 |
 
 ## PHP Libraries / Extensions
 
