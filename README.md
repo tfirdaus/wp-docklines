@@ -10,22 +10,23 @@ Each of these Docker images include:
 - [WP-CLI](http://wp-cli.org/)
 - [Subversion](https://subversion.apache.org/)
 - [Git](https://git-scm.com/)
+- [Composer](https://getcomposer.org/)
 
 See the following table for version of each package included:
 
 ## PHP Images
 
-| Image | WP-CLI | SVN | Git |
-| --- | --- | --- | --- |
-| `php7.2-apache`     | 2.4.0 | 1.10.4 | 2.20.1 |
-| `php7.2-fpm`        | 2.4.0 | 1.10.4 | 2.20.1 |
-| `php7.2-fpm-alpine` | 2.4.0 | 1.12.2 | 2.24.1 |
-| `php7.3-apache`     | 2.4.0 | 1.10.4 | 2.20.1 |
-| `php7.3-fpm`        | 2.4.0 | 1.10.4 | 2.20.1 |
-| `php7.3-fpm-alpine` | 2.4.0 | 1.12.2 | 2.24.1 |
-| `php7.4-apache`     | 2.4.0 | 1.10.4 | 2.20.1 |
-| `php7.4-fpm`        | 2.4.0 | 1.10.4 | 2.20.1 |
-| `php7.4-fpm-alpine` | 2.4.0 | 1.12.2 | 2.24.1 |
+| Image | WP-CLI | SVN | Git | Composer |
+| --- | --- | --- | --- | --- |
+| `php7.2-apache`     | 2.4.0 | 1.10.4 | 2.20.1 | 1.10.1 |
+| `php7.2-fpm`        | 2.4.0 | 1.10.4 | 2.20.1 | 1.10.1 |
+| `php7.2-fpm-alpine` | 2.4.0 | 1.12.2 | 2.24.1 | 1.10.1 |
+| `php7.3-apache`     | 2.4.0 | 1.10.4 | 2.20.1 | 1.10.1 |
+| `php7.3-fpm`        | 2.4.0 | 1.10.4 | 2.20.1 | 1.10.1 |
+| `php7.3-fpm-alpine` | 2.4.0 | 1.12.2 | 2.24.1 | 1.10.1 |
+| `php7.4-apache`     | 2.4.0 | 1.10.4 | 2.20.1 | 1.10.1 |
+| `php7.4-fpm`        | 2.4.0 | 1.10.4 | 2.20.1 | 1.10.1 |
+| `php7.4-fpm-alpine` | 2.4.0 | 1.12.2 | 2.24.1 | 1.10.1 |
 
 ## PHP Libraries / Extensions
 
