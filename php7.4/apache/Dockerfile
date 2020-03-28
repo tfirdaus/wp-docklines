@@ -30,6 +30,23 @@ RUN set -ex; \
 	&& mkdir -p /var/www/.wp-cli && chown www-data:www-data -R /var/www/.wp-cli \
 	&& wp cli info
 
+# Install Composer
+ENV COMPOSER_VERSION 1.10.1
+
+RUN set -eux; \
+  curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/cb19f2aa3aeaa2006c0cd69a7ef011eb31463067/web/installer; \
+  php -r " \
+    \$signature = '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5'; \
+    \$hash = hash('sha384', file_get_contents('/tmp/installer.php')); \
+    if (!hash_equals(\$signature, \$hash)) { \
+      unlink('/tmp/installer.php'); \
+      echo 'Integrity check failed, installer is either corrupt or worse.' . PHP_EOL; \
+      exit(1); \
+    }"; \
+  php /tmp/installer.php --no-ansi --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION}; \
+  composer --ansi --version --no-interaction; \
+  rm -rf /tmp/*;
+
 ##<apache>##
 RUN set -ex; \
 	echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf \
