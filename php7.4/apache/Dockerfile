@@ -1,6 +1,6 @@
 FROM wordpress:php7.4-apache
 
-LABEL maintainer="thoriqoe@gmail.com"
+LABEL org.opencontainers.image.source https://github.com/tfirdaus/wp-docklines
 
 # Install extra packages
 RUN set -ex; \
@@ -31,7 +31,7 @@ RUN set -ex; \
 	&& wp cli info
 
 # Install Composer
-ENV COMPOSER_VERSION 1.10.1
+ENV COMPOSER_VERSION 1.10.17
 
 RUN set -eux; \
   curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/cb19f2aa3aeaa2006c0cd69a7ef011eb31463067/web/installer; \
