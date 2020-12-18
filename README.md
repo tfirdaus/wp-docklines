@@ -42,3 +42,4 @@ You'll need to install Docker ([Mac](https://www.docker.com/docker-mac)|[Windows
 
 - [Docker Compose](https://github.com/tfirdaus/wp-docklines/wiki/Docker-Compose)
 - [Bitbucket Pipelines](https://github.com/tfirdaus/wp-docklines/wiki/Bitbucket-Pipelines)
+- [Gitlab CI](https://github.com/tfirdaus/wp-docklines/wiki/Gitlab-CI)
