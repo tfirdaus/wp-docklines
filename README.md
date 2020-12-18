@@ -38,7 +38,7 @@ The image also includes the following packages that might be needed for deployme
 
 ## Usage
 
-You'll need to install Docker ([Mac](https://www.docker.com/docker-mac)|[Windows](https://www.docker.com/docker-windows)) on your machine. The image is available in [Docker Hub](https://hub.docker.com/), and you can run `docker pull tfirdaus/wp-docklines` command to pull the latest image which defaults to the `latest` tag or `php7.2-apache`. Have a look at the [Wiki](https://github.com/tfirdaus/wp-docklines/wiki) for a few real-world usages of these images:
+You'll need to install Docker ([Mac](https://www.docker.com/docker-mac)|[Windows](https://www.docker.com/docker-windows)) on your machine. The image is available in [Docker Hub](https://hub.docker.com/), and you can run `docker pull tfirdaus/wp-docklines` command to pull the latest image which defaults to the `latest` tag or `php8.0-apache`. Have a look at the [Wiki](https://github.com/tfirdaus/wp-docklines/wiki) for a few real-world usages of these images:
 
 - [Docker Compose](https://github.com/tfirdaus/wp-docklines/wiki/Docker-Compose)
 - [Bitbucket Pipelines](https://github.com/tfirdaus/wp-docklines/wiki/Bitbucket-Pipelines)
