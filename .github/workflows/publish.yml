@@ -40,8 +40,19 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v3
-        with:
-          context: ${{ matrix.version }}
-          push: ${{ github.ref_name == 'master' }}
+      - name: Determines tag
+        id: tagging
+        run: |
+          slash='/'
+          variant=${{ matrix.version }}
+          tag=$(echo ${variant//$slash/-})
+          echo "::set-output name=tag::$tag"
+
+      -  run: echo ${{ steps.tagging.outputs.tag }}
+
+      # - name: Build and push Docker image
+      #   uses: docker/build-push-action@v3
+      #   with:
+      #     context: ${{ matrix.version }}
+      #     tags: ${{ steps.outputs }}
+      #     push: ${{ github.ref_name == 'master' }}
