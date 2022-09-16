@@ -46,7 +46,9 @@ jobs:
           slash='/'
           context=${{ matrix.context }}
           version=$(echo ${context//$slash/-})
-          echo "::set-output name=tag::${{ github.repository }}:$version"
+          tag=${{ github.repository }}:$version
+          echo $tag
+          echo "::set-output name=tag::$tag"
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
