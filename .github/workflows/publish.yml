@@ -48,11 +48,9 @@ jobs:
           version=$(echo ${context//$slash/-})
           echo "::set-output name=tag::${{ github.repository }}:$version"
 
-      - run: echo ${{ steps.prepares.outputs.tag }}
-
-      # - name: Build and push Docker image
-      #   uses: docker/build-push-action@v3
-      #   with:
-      #     context: ${{ matrix.context }}
-      #     tags: ${{ steps.prepares.outputs.tag }}
-      #     push: ${{ github.ref_name == 'master' }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: ${{ matrix.context }}
+          tags: ${{ steps.prepares.outputs.tag }}
+          push: ${{ github.ref_name == 'master' }}
