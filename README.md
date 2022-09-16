@@ -1,6 +1,6 @@
 # WP Docklines
 
-[![Docker Automated build](https://img.shields.io/docker/automated/tfirdaus/wp-docklines.svg?style=flat)](https://hub.docker.com/r/tfirdaus/wp-docklines/) [![Docker Pulls](https://img.shields.io/docker/pulls/tfirdaus/wp-docklines.svg?style=flat)](https://hub.docker.com/r/tfirdaus/wp-docklines/) [![Docker Build Status](https://img.shields.io/docker/build/tfirdaus/wp-docklines.svg?style=flat)](https://hub.docker.com/r/tfirdaus/wp-docklines/) [![Travis](https://img.shields.io/travis/tfirdaus/wp-docklines.svg?style=flat)](https://travis-ci.org/tfirdaus/wp-docklines) [![License](https://img.shields.io/github/license/tfirdaus/wp-docklines.svg?style=flat)](https://github.com/tfirdaus/wp-docklines)
+[![Docker Automated build](https://img.shields.io/docker/automated/tfirdaus/wp-docklines.svg?style=flat)](https://hub.docker.com/r/tfirdaus/wp-docklines/) [![Docker Pulls](https://img.shields.io/docker/pulls/tfirdaus/wp-docklines.svg?style=flat)](https://hub.docker.com/r/tfirdaus/wp-docklines/) [![Travis](https://img.shields.io/travis/tfirdaus/wp-docklines.svg?style=flat)](https://travis-ci.org/tfirdaus/wp-docklines) [![License](https://img.shields.io/github/license/tfirdaus/wp-docklines.svg?style=flat)](https://github.com/tfirdaus/wp-docklines)
 
 > [Docker](https://www.docker.com/) images for setting up and running a WordPress development environment.
 
