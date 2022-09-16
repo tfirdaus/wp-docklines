@@ -1,6 +1,6 @@
-FROM wordpress:php7.4-fpm
 FROM composer:2 AS composer
 FROM wordpress:cli-2.6 AS wp-cli
+FROM wordpress:php7.4-fpm
 
 LABEL org.opencontainers.image.source https://github.com/tfirdaus/wp-docklines
 

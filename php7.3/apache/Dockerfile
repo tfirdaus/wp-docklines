@@ -1,6 +1,6 @@
-FROM wordpress:php7.3-apache
 FROM composer:2 AS composer
 FROM wordpress:cli-2.6 AS wp-cli
+FROM wordpress:php7.3-apache
 
 LABEL org.opencontainers.image.source https://github.com/tfirdaus/wp-docklines
 
