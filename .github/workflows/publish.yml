@@ -44,8 +44,8 @@ jobs:
         id: prepares
         run: |
           slash='/'
-          variant=${{ matrix.version }}
-          tag=$(echo ${variant//$slash/-})
+          context=${{ matrix.context }}
+          version=$(echo ${context//$slash/-})
           echo "::set-output name=tag::${{ github.repository }}:$tag"
 
       - run: echo ${{ steps.prepares.outputs.tag }}
